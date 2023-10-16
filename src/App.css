@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+
+/* HOMEPAGE STYLES BELOW */
+
+body * {
+  font-family: Arvo;
+  color: black;
+}
+
+#menu-bar {
+  position: relative;
+  width: 100vw;
+  height: 70px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(139, 55, 55, 0.65),
+    rgba(139, 55, 55, 0.6),
+    rgba(139, 55, 55, 0.55),
+    rgba(139, 55, 55, 0.5),
+    rgba(139, 55, 55, 0)
+  );
+}
+
+#menu-bar > #overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(139, 55, 55, 0.65);
+  border-bottom: 1px rgb(21, 21, 21) solid;
+  z-index: 0;
+}
+
+#menu-icon {
+  display: inline-block;
+  cursor: pointer;
+  transform: scale(0.5);
+  position: absolute;
+  right: 30px;
+  top: 10px;
+}
+
+#menu-icon > div {
+  width: 35px;
+  height: 3px;
+  background-color: white;
+  opacity: 1;
+  margin: 9px 0;
+}
+
+#menu-icon.x-ified > :nth-child(1) {
+  animation: counterClockwiseTurn 0.25s;
+  transform: rotate(-45deg) translateY(16.5px);
+}
+
+#menu-icon.x-ified > :nth-child(2) {
+  animation: hide 0.2s;
+  opacity: 0;
+}
+
+#menu-icon.x-ified > :nth-child(3) {
+  animation: clockwiseTurn 0.25s;
+  transform: rotate(45deg) translateY(-16.5px);
+}
+
+#menu-icon.de-x-ified > :nth-child(1) {
+  animation: counterClockwiseUnturn 0.25s;
+  transform: rotate(0) translateY(0);
+}
+
+#menu-icon.de-x-ified > :nth-child(2) {
+  animation: show 0.2s;
+  opacity: 1;
+}
+
+#menu-icon.de-x-ified > :nth-child(3) {
+  animation: clockwiseUnturn 0.25s;
+  transform: rotate(0) translateY(0);
+}
+
+/* #menu-icon > * {
+  animation: clockwiseTurn 0.25s reverse;
+  transform: rotate(0) translateY(0);
+} */
+
+@keyframes counterClockwiseTurn {
+  from {
+    transform: rotate(0) translateY(0);
+  }
+  to {
+    transform: rotate(-45deg) translateY(16.5px);
+  }
+}
+
+@keyframes clockwiseTurn {
+  from {
+    transform: rotate(0) translateY(0);
+  }
+  to {
+    transform: rotate(45deg) translateY(-16.5px);
+  }
+}
+
+@keyframes counterClockwiseUnturn {
+  from {
+    transform: rotate(-45deg) translateY(16.5px);
+  }
+  to {
+    transform: rotate(0) translateY(0);
+  }
+}
+
+@keyframes clockwiseUnturn {
+  from {
+    transform: rotate(45deg) translateY(-16.5px);
+  }
+  to {
+    transform: rotate(0) translateY(0);
+  }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#menu {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  padding: 20px;
+  font-size: 20pt;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+#menu.shown > * {
+  animation: opacifyUp 0.25s;
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+#menu.hidden > * {
+  animation: invisifyDown 0.25s;
+  opacity: 0;
+}
+
+@keyframes opacifyUp {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes invisifyDown {
+  from {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+#overlay:not(.shown):not(.hidden),
+#login-bar:not(.shown):not(.hidden) {
+  opacity: 0;
+}
+
+#overlay.shown,
+#login-bar.shown {
+  animation: show 0.25s;
+  opacity: 1;
+}
+
+#overlay.hidden,
+#login-bar.hidden {
+  animation: hide 0.25s;
+  opacity: 0;
+}
+
+#menu div {
+  opacity: 0;
+}
+
+#menu a {
+  text-decoration: none;
+  pointer-events: none;
+}
+
+#login-bar {
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(139, 55, 55, 0.65);
+  border-top: 1px rgb(21, 21, 21) solid;
+  display: flex;
+  gap: 5em;
+  justify-content: center;
+  align-items: center;
+}
+
+/* #menu-bar > #overlay.opaque,
+#menu div.opaque,
+#login-bar.opaque {
+  opacity: 1;
+} */
+
+button {
+  font-size: 12pt;
+  border-radius: 25px;
+  height: 50px;
+  padding: 10px;
+  width: 300px;
+  border: none;
+  transition: color 0.4s ease-out, background-color 0.4s ease-out,
+    transform 0.4s ease-out, box-shadow 0.2s ease-out;
+}
+
+button:hover {
+  color: white;
+  background-color: black;
+  transform: translate(0, -4px);
+  box-shadow: 0px 10px 20px rgb(54, 52, 52);
+}
+
+#login-bar > a {
+  pointer-events: none;
+}
+
+#menu a.active,
+#login-bar > a.active {
+  pointer-events: auto;
+}
+
+/* STYLES FOR LOGIN & REGISTER PAGES BELOW */
+
+body#login,
+body#register {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(
+    60deg,
+    rgba(139, 55, 55, 0.8),
+    rgba(248, 125, 18, 0.8)
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.338);
+  border-radius: 10px;
+  height: 600px;
+  width: 350px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 35px;
+  padding-right: 43px;
+}
+
+form,
+form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  gap: 3em;
+  height: 150px;
+  width: 350px;
+}
+
+.field > input,
+.name-section .field {
+  width: 100%;
+}
+
+.password-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.name-section {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+}
+
+input.submit {
+  font-size: 12pt;
+  text-transform: uppercase;
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  padding: 10px 0;
+}
