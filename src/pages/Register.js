@@ -9,33 +9,23 @@ const Register = () => {
 
     const postReq = {
       method: 'POST',
-      headers: {
-        Accept: '*/*',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Content-Length': '147',
-        'Content-Type': 'application/json',
-        Host: 'weak-puce-toad-garb.cyclic.app',
-        'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
-        // 'X-Forwarded-For': '99.65.186.42',
-        // 'X-Forwarded-Port': '443',
-        // 'X-Forwarded-Proto': 'https',
-      },
+      //   headers: {
+      //     Accept: '*/*',
+      //     'Accept-Encoding': 'gzip, deflate, br',
+      //     'Content-Length': '147',
+      //     'Content-Type': 'application/json',
+      //     Host: 'weak-puce-toad-garb.cyclic.app',
+      //     'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
+      //     // 'X-Forwarded-For': '99.65.186.42',
+      //     // 'X-Forwarded-Port': '443',
+      //     // 'X-Forwarded-Proto': 'https',
+      //   },
       body: JSON.stringify(form),
     };
 
-    // prettier-ignore
-    // const postReq = {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: '{"name":"john"}',
-    // };
-    const res = await fetch(
-      `https://weak-puce-toad-garb.cyclic.app/`,
-      postReq
-    ).catch((error) => console.log(error));
-    console.log(res);
+    await fetch(`https://weak-puce-toad-garb.cyclic.app/`, postReq).catch(
+      (error) => console.log(error)
+    );
     // pantryClient.basket
     //   .update('accounts', form, options)
     //   .then((response) => console.log(response));
