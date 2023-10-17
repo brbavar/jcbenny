@@ -41,18 +41,18 @@ const Register = () => {
     //   .then((response) => console.log(response));
   };
 
-  const jsonifyForm = (form) => {
-    const formKeyNodes = form.querySelectorAll(
-      '.field > :nth-child(1):not(.submit)'
-    );
-    const formValNodes = form.querySelectorAll('.field > :nth-child(2)');
+  //   const jsonifyForm = (form) => {
+  //     const formKeyNodes = form.querySelectorAll(
+  //       '.field > :nth-child(1):not(.submit)'
+  //     );
+  //     const formValNodes = form.querySelectorAll('.field > :nth-child(2)');
 
-    const jsonifiedForm = {};
-    for (var i = 0; i < formKeyNodes.length; i++)
-      jsonifiedForm[formKeyNodes[i].textContent] = formValNodes[i].value;
+  //     const jsonifiedForm = {};
+  //     for (var i = 0; i < formKeyNodes.length; i++)
+  //       jsonifiedForm[formKeyNodes[i].textContent] = formValNodes[i].value;
 
-    return jsonifiedForm;
-  };
+  //     return jsonifiedForm;
+  //   };
 
   return (
     <body id='register'>
