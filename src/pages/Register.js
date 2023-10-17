@@ -9,17 +9,13 @@ const Register = () => {
 
     const postReq = {
       method: 'POST',
-      //   headers: {
-      //     Accept: '*/*',
-      //     'Accept-Encoding': 'gzip, deflate, br',
-      //     'Content-Length': '147',
-      //     'Content-Type': 'application/json',
-      //     Host: 'weak-puce-toad-garb.cyclic.app',
-      //     'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
-      //     // 'X-Forwarded-For': '99.65.186.42',
-      //     // 'X-Forwarded-Port': '443',
-      //     // 'X-Forwarded-Proto': 'https',
-      //   },
+      headers: {
+        'Content-Type': 'application/json',
+        // 'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
+        // 'X-Forwarded-For': '99.65.186.42',
+        // 'X-Forwarded-Port': '443',
+        // 'X-Forwarded-Proto': 'https',
+      },
       body: JSON.stringify(form),
     };
 
