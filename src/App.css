@@ -10,7 +10,7 @@ body * {
 #menu-bar {
   position: relative;
   width: 100vw;
-  height: 70px;
+  height: 10vh;
   background-image: linear-gradient(
     to bottom,
     rgba(139, 55, 55, 0.65),
