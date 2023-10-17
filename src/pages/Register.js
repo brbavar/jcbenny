@@ -4,33 +4,33 @@ const Register = () => {
   const formRef = useRef(null);
 
   const submitForm = async () => {
-    // const registrationForm = formRef.current;
-    // const form = jsonifyForm(registrationForm);
+    const registrationForm = formRef.current;
+    const form = jsonifyForm(registrationForm);
 
-    // const postReq = {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: '*/*',
-    //     'Accept-Encoding': 'gzip, deflate, br',
-    //     'Content-Length': '147',
-    //     'Content-Type': 'application/json',
-    //     Host: 'weak-puce-toad-garb.cyclic.app',
-    //     'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
-    //     // 'X-Forwarded-For': '99.65.186.42',
-    //     // 'X-Forwarded-Port': '443',
-    //     // 'X-Forwarded-Proto': 'https',
-    //   },
-    //   body: JSON.stringify(form),
-    // };
-
-    // prettier-ignore
     const postReq = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        Accept: '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Content-Length': '147',
+        'Content-Type': 'application/json',
+        Host: 'weak-puce-toad-garb.cyclic.app',
+        'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
+        // 'X-Forwarded-For': '99.65.186.42',
+        // 'X-Forwarded-Port': '443',
+        // 'X-Forwarded-Proto': 'https',
       },
-      body: '{name:"john"}',
+      body: JSON.stringify(form),
     };
+
+    // prettier-ignore
+    // const postReq = {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: '{"name":"john"}',
+    // };
     const res = await fetch(
       `https://weak-puce-toad-garb.cyclic.app/`,
       postReq
@@ -41,18 +41,18 @@ const Register = () => {
     //   .then((response) => console.log(response));
   };
 
-  //   const jsonifyForm = (form) => {
-  //     const formKeyNodes = form.querySelectorAll(
-  //       '.field > :nth-child(1):not(.submit)'
-  //     );
-  //     const formValNodes = form.querySelectorAll('.field > :nth-child(2)');
+  const jsonifyForm = (form) => {
+    const formKeyNodes = form.querySelectorAll(
+      '.field > :nth-child(1):not(.submit)'
+    );
+    const formValNodes = form.querySelectorAll('.field > :nth-child(2)');
 
-  //     const jsonifiedForm = {};
-  //     for (var i = 0; i < formKeyNodes.length; i++)
-  //       jsonifiedForm[formKeyNodes[i].textContent] = formValNodes[i].value;
+    const jsonifiedForm = {};
+    for (var i = 0; i < formKeyNodes.length; i++)
+      jsonifiedForm[formKeyNodes[i].textContent] = formValNodes[i].value;
 
-  //     return jsonifiedForm;
-  //   };
+    return jsonifiedForm;
+  };
 
   return (
     <body id='register'>
