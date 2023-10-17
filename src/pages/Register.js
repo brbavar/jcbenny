@@ -29,7 +29,7 @@ const Register = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: '{"name":"john"}',
+      body: {"name":"john"},
     };
     const res = await fetch(
       `https://weak-puce-toad-garb.cyclic.app/`,
