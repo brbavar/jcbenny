@@ -4,8 +4,9 @@ const Register = () => {
   const formRef = useRef(null);
 
   const submitForm = async () => {
-    const registrationForm = formRef.current;
-    const form = jsonifyForm(registrationForm);
+    // const registrationForm = formRef.current;
+    // const form = jsonifyForm(registrationForm);
+
     // const postReq = {
     //   method: 'POST',
     //   headers: {
