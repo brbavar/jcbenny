@@ -1,4 +1,4 @@
-import { useRef /*, forwardRef, useState*/ } from 'react';
+// import { useRef /*, forwardRef, useState*/ } from 'react';
 
 const Register = () => {
   //   const formRef = useRef(null);
@@ -40,7 +40,7 @@ const Register = () => {
     <body id='register'>
       <div className='card'>
         <h3>Create an account</h3>
-        <form ref={formRef}>
+        <form /*ref={formRef}*/>
           <div className='field'>
             <div>Email</div>
             <input name='Email' type='email' />
