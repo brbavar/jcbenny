@@ -206,6 +206,7 @@ body * {
 }
 
 #menu a {
+  font-size: 4em;
   text-decoration: none;
   pointer-events: none;
 }
@@ -213,7 +214,7 @@ body * {
 #login-bar {
   position: absolute;
   width: 100%;
-  height: 70px;
+  height: 10vh;
   left: 0;
   bottom: 0;
   background-color: rgba(139, 55, 55, 0.65);
@@ -301,6 +302,7 @@ form {
 }
 
 .field > input,
+.field > button,
 .name-section .field {
   width: 100%;
 }
