@@ -15,7 +15,7 @@ const Register = () => {
       body: JSON.stringify(form),
     };
 
-    fetch(`https://weak-puce-toad-garb.cyclic.app/`, postReq).catch((error) =>
+    fetch('https://weak-puce-toad-garb.cyclic.app/', postReq).catch((error) =>
       console.log(error)
     );
     // pantryClient.basket
@@ -43,31 +43,32 @@ const Register = () => {
         <form ref={formRef}>
           <div className='field'>
             <div>Email</div>
-            <input type='email' />
+            <input name='Email' type='email' />
           </div>
           <div className='name-section'>
             <div className='field'>
               <div>First name</div>
-              <input type='text' />
+              <input name='First name' type='text' />
             </div>
             <div className='field'>
               <div>Last name</div>
-              <input type='text' />
+              <input name='Last name' type='text' />
             </div>
           </div>
           <div className='password-section'>
             <div className='field'>
               <div>Password</div>
-              <input type='password' />
+              <input name='Password' type='password' />
             </div>
             <div className='field'>
               <div>Confirm new password</div>
-              <input type='password' />
+              <input name='Confirm new password' type='password' />
             </div>
           </div>
           <div className='field'>
             <input
               className='submit'
+              name='Create account'
               type='submit'
               value='Create account'
               onClick={submitForm}
