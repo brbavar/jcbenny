@@ -234,15 +234,18 @@ body * {
 button {
   font-size: 12pt;
   border-radius: 25px;
-  height: 50px;
   padding: 10px;
-  width: 300px;
+}
+
+button:not(.submit) {
   border: none;
+  height: 50px;
+  width: 300px;
   transition: color 0.4s ease-out, background-color 0.4s ease-out,
     transform 0.4s ease-out, box-shadow 0.2s ease-out;
 }
 
-button:hover {
+button:not(.submit):hover {
   color: white;
   background-color: black;
   transform: translate(0, -4px);
@@ -321,10 +324,13 @@ form .field > button,
 
 input.submit,
 button.submit {
-  font-size: 12pt;
   text-transform: uppercase;
   color: white;
   background-color: black;
   border-radius: 5px;
   padding: 10px 0;
+}
+
+input.submit {
+  font-size: 12pt;
 }
