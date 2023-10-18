@@ -3,7 +3,7 @@ import { useRef /*, forwardRef, useState*/ } from 'react';
 const Register = () => {
   const formRef = useRef(null);
 
-  const submitForm = async () => {
+  const submitForm = () => {
     const registrationForm = formRef.current;
     const form = jsonifyForm(registrationForm);
 
@@ -19,8 +19,8 @@ const Register = () => {
       body: JSON.stringify(form),
     };
 
-    await fetch(`https://weak-puce-toad-garb.cyclic.app/`, postReq).catch(
-      (error) => console.log(error)
+    fetch(`https://weak-puce-toad-garb.cyclic.app/`, postReq).catch((error) =>
+      console.log(error)
     );
     // pantryClient.basket
     //   .update('accounts', form, options)
