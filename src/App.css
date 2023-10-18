@@ -319,7 +319,7 @@ form .field > button,
   gap: 2em;
 }
 
-/* input.submit, */
+input.submit,
 button.submit {
   font-size: 12pt;
   text-transform: uppercase;
