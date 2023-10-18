@@ -302,7 +302,7 @@ form {
 }
 
 .field > input,
-.field > button,
+form .field > button,
 .name-section .field {
   width: 100%;
 }
@@ -319,7 +319,8 @@ form {
   gap: 2em;
 }
 
-input.submit {
+/* input.submit, */
+button.submit {
   font-size: 12pt;
   text-transform: uppercase;
   color: white;
