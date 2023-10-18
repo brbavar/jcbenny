@@ -1,46 +1,46 @@
-// import { useRef /*, forwardRef, useState*/ } from 'react';
+import { useRef /*, forwardRef, useState*/ } from 'react';
 
 const Register = () => {
-  //   const formRef = useRef(null);
+  const formRef = useRef(null);
 
-  //   const submitForm = () => {
-  //     const registrationForm = formRef.current;
-  //     const form = jsonifyForm(registrationForm);
+  const submitForm = () => {
+    const registrationForm = formRef.current;
+    const form = jsonifyForm(registrationForm);
 
-  //     const postReq = {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(form),
-  //     };
+    const postReq = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(form),
+    };
 
-  //     fetch('https://weak-puce-toad-garb.cyclic.app/', postReq).catch((error) =>
-  //       console.log(error)
-  //     );
-  //     // pantryClient.basket
-  //     //   .update('accounts', form, options)
-  //     //   .then((response) => console.log(response));
-  //   };
+    fetch('https://weak-puce-toad-garb.cyclic.app/', postReq).catch((error) =>
+      console.log(error)
+    );
+    // pantryClient.basket
+    //   .update('accounts', form, options)
+    //   .then((response) => console.log(response));
+  };
 
-  //   const jsonifyForm = (form) => {
-  //     const formKeyNodes = form.querySelectorAll(
-  //       '.field > :nth-child(1):not(.submit)'
-  //     );
-  //     const formValNodes = form.querySelectorAll('.field > :nth-child(2)');
+  const jsonifyForm = (form) => {
+    const formKeyNodes = form.querySelectorAll(
+      '.field > :nth-child(1):not(.submit)'
+    );
+    const formValNodes = form.querySelectorAll('.field > :nth-child(2)');
 
-  //     const jsonifiedForm = {};
-  //     for (var i = 0; i < formKeyNodes.length; i++)
-  //       jsonifiedForm[formKeyNodes[i].textContent] = formValNodes[i].value;
+    const jsonifiedForm = {};
+    for (var i = 0; i < formKeyNodes.length; i++)
+      jsonifiedForm[formKeyNodes[i].textContent] = formValNodes[i].value;
 
-  //     return jsonifiedForm;
-  //   };
+    return jsonifiedForm;
+  };
 
   return (
     <body id='register'>
       <div className='card'>
         <h3>Create an account</h3>
-        <form /*ref={formRef}*/>
+        <form ref={formRef}>
           <div className='field'>
             <div>Email</div>
             <input name='Email' type='email' />
@@ -71,9 +71,9 @@ const Register = () => {
               name='Create account'
               type='submit'
               value='Create account'
-              formaction='https://weak-puce-toad-garb.cyclic.app/'
-              formmethod='post'
-              //   onClick={submitForm}
+              //   formaction='https://weak-puce-toad-garb.cyclic.app/'
+              //   formmethod='post'
+              onClick={submitForm}
             />
           </div>
           <p style={{ fontSize: '10pt' }}>
