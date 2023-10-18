@@ -11,10 +11,6 @@ const Register = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // 'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
-        // 'X-Forwarded-For': '99.65.186.42',
-        // 'X-Forwarded-Port': '443',
-        // 'X-Forwarded-Proto': 'https',
       },
       body: JSON.stringify(form),
     };
