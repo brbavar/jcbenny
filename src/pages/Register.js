@@ -69,7 +69,7 @@ const Register = () => {
             <button
               className='submit'
               //   name='Create account'
-              type='submit'
+              //   type='submit'
               //   value='Create account'
               //   formaction='https://weak-puce-toad-garb.cyclic.app/'
               //   formmethod='post'
