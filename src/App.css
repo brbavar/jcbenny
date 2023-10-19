@@ -206,7 +206,7 @@ body * {
 }
 
 #menu a {
-  font-size: 4em;
+  /* font-size: 4em; */
   text-decoration: none;
   pointer-events: none;
 }
