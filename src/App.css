@@ -81,11 +81,6 @@ body * {
   transform: rotate(0) translateY(0);
 }
 
-/* #menu-icon > * {
-  animation: clockwiseTurn 0.25s reverse;
-  transform: rotate(0) translateY(0);
-} */
-
 @keyframes counterClockwiseTurn {
   from {
     transform: rotate(0) translateY(0);
@@ -206,7 +201,6 @@ body * {
 }
 
 #menu a {
-  /* font-size: 4em; */
   text-decoration: none;
   pointer-events: none;
 }
@@ -225,20 +219,10 @@ body * {
   align-items: center;
 }
 
-/* #menu-bar > #overlay.opaque,
-#menu div.opaque,
-#login-bar.opaque {
-  opacity: 1;
-} */
-
 button {
   font-size: 12pt;
   border-radius: 25px;
   padding: 10px;
-}
-
-/* button:not(.submit) */
-button {
   border: none;
   height: 50px;
   width: 300px;
@@ -246,7 +230,6 @@ button {
     transform 0.4s ease-out, box-shadow 0.2s ease-out;
 }
 
-/* button:not(.submit):hover  */
 button:hover {
   color: white;
   background-color: black;
@@ -307,7 +290,6 @@ form {
 }
 
 .field > input,
-/* form .field > button, */
 .name-section .field {
   width: 100%;
 }
@@ -324,15 +306,11 @@ form {
   gap: 2em;
 }
 
-input.submit/*,
-button.submit*/ {
+input.submit {
+  font-size: 12pt;
   text-transform: uppercase;
   color: white;
   background-color: black;
   border-radius: 5px;
   padding: 10px 0;
-}
-
-input.submit {
-  font-size: 12pt;
 }
