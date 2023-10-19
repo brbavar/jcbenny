@@ -66,17 +66,20 @@ const Register = () => {
             </div>
           </div>
           <div className='field'>
-            <button
+            {/* <button
               className='submit'
-              //   name='Create account'
-              //   type='submit'
-              //   value='Create account'
-              //   formaction='https://weak-puce-toad-garb.cyclic.app/'
-              //   formmethod='post'
               onClick={submitForm}
             >
               Create account
-            </button>
+            </button> */}
+            <input
+              className='submit'
+              type='submit'
+              formaction='https://weak-puce-toad-garb.cyclic.app/'
+              formmethod='post'
+              name='Create account'
+              value='Create account'
+            />
           </div>
           <p style={{ fontSize: '10pt' }}>
             Already have an account? <a href='login'>Sign in.</a>
