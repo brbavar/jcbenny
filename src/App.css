@@ -2,6 +2,11 @@
 
 /* HOMEPAGE STYLES BELOW */
 
+@media (pointer: none), (pointer: coarse) {
+  #menu > * {
+  }
+}
+
 body * {
   font-family: Arvo;
   color: black;
@@ -137,7 +142,7 @@ body * {
 
 #menu {
   position: absolute;
-  top: 90px;
+  top: 10vh;
   left: 0;
   padding: 20px;
   font-size: 20pt;
