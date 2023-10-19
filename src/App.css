@@ -4,6 +4,7 @@
 
 @media (pointer: none), (pointer: coarse) {
   #menu > * {
+    font-size: 20pt;
   }
 }
 
