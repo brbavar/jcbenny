@@ -2,12 +2,6 @@
 
 /* HOMEPAGE STYLES BELOW */
 
-@media (pointer: none), (pointer: coarse) {
-  #menu > * {
-    font-size: 40pt;
-  }
-}
-
 body * {
   font-family: Arvo;
   color: black;
@@ -16,7 +10,7 @@ body * {
 #menu-bar {
   position: relative;
   width: 100vw;
-  height: 10vh;
+  height: 80px;
   background-image: linear-gradient(
     to bottom,
     rgba(139, 55, 55, 0.65),
@@ -143,9 +137,9 @@ body * {
 
 #menu {
   position: absolute;
-  top: 10vh;
+  top: 80px;
   left: 0;
-  padding: 20px;
+  padding: 30px;
   font-size: 20pt;
   display: flex;
   flex-direction: column;
@@ -214,7 +208,7 @@ body * {
 #login-bar {
   position: absolute;
   width: 100%;
-  height: 10vh;
+  height: 90px;
   left: 0;
   bottom: 0;
   background-color: rgba(139, 55, 55, 0.65);
@@ -319,4 +313,35 @@ input.submit {
   background-color: black;
   border-radius: 5px;
   padding: 10px 0;
+}
+
+@media (pointer: none), (pointer: coarse) {
+  /* HOMEPAGE STYLES BELOW */
+
+  #menu-bar,
+  #login-bar {
+    height: 10vh;
+  }
+
+  #menu {
+    transform: scale(2) translate(35px, 120px);
+  }
+
+  button {
+    font-size: 24pt;
+    border-radius: 50px;
+    padding: 20px;
+    height: 100px;
+    width: 400px;
+  }
+
+  #menu-icon {
+    transform: scale(1.5) translate(-40px, 30px);
+  }
+
+  /* STYLES FOR LOGIN & REGISTER PAGES BELOW */
+
+  .card {
+    transform: scale(2);
+  }
 }
