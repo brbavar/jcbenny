@@ -32,8 +32,8 @@ const Register = () => {
             <input
               className='submit'
               type='submit'
-              formaction='https://weak-puce-toad-garb.cyclic.app/'
-              formmethod='post'
+              formAction='https://weak-puce-toad-garb.cyclic.app/'
+              formMethod='post'
               name='Create account'
               value='Create account'
             />
