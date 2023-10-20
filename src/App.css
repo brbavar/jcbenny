@@ -315,9 +315,7 @@ input.submit {
   padding: 10px 0;
 }
 
-@media (pointer: none), (pointer: coarse) {
-  /* HOMEPAGE STYLES BELOW */
-
+/* @media (pointer: none), (pointer: coarse) {
   #menu-bar,
   #login-bar {
     height: 10vh;
@@ -339,9 +337,34 @@ input.submit {
     transform: scale(1.5) translate(-40px, 30px);
   }
 
-  /* STYLES FOR LOGIN & REGISTER PAGES BELOW */
-
   .card {
     transform: scale(2);
+  }
+} */
+
+@media (pointer: none), (pointer: coarse) {
+  .card {
+    transform: scale(0.75);
+  }
+
+  button {
+    font-size: 24pt;
+    height: 100px;
+    width: 350px;
+  }
+
+  #login-bar > :nth-child(1) > button {
+    font-size: 12pt;
+    height: 50px;
+    width: 175px;
+    transform: translateX(35px);
+  }
+
+  #login-bar > :nth-child(2) > button {
+    font-size: 12pt;
+    height: 50px;
+    width: 175px;
+    transform: translateX(-35px);
+    /* transform: scale(0.75) translateX(-140px); */
   }
 }
