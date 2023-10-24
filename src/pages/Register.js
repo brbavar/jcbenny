@@ -27,11 +27,9 @@ const onsubmitHandler = (e) => {
 
   console.log(`form contents: ${JSON.stringify(form)}`);
 
-  fetch('https://weak-puce-toad-garb.cyclic.app/', postReq).catch((error) =>
-    console.log(error)
-  );
-
-  window.location.href = '/registered';
+  fetch('https://weak-puce-toad-garb.cyclic.app/', postReq)
+    .then((window.location.href = '/registered'))
+    .catch((error) => console.log(error));
 };
 
 const Register = () => {
