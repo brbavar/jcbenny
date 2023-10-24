@@ -3,7 +3,7 @@ const Register = () => {
     <body id='register'>
       <div className='card'>
         <h3>Create an account</h3>
-        <form>
+        <form onsubmit='window.location.href = "/registered"'>
           <div className='field'>
             <div>Email</div>
             <input name='Email' type='email' />
