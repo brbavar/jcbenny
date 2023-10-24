@@ -31,7 +31,7 @@ const onsubmitHandler = (e) => {
     console.log(error)
   );
 
-  // window.location.href = 'http://localhost:3000/registered';
+  window.location.href = '/registered';
 };
 
 const Register = () => {
