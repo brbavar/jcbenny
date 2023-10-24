@@ -1,9 +1,46 @@
+const jsonifyForm = (form) => {
+  const formKeyNodes = form.querySelectorAll(
+    '.field > :nth-child(1):not(.submit)'
+  );
+  const formValNodes = form.querySelectorAll('.field > :nth-child(2)');
+
+  const jsonifiedForm = {};
+  for (var i = 0; i < formKeyNodes.length; i++)
+    jsonifiedForm[formKeyNodes[i].textContent] = formValNodes[i].value;
+
+  return jsonifiedForm;
+};
+
+const onsubmitHandler = (e) => {
+  e.preventDefault();
+
+  const registrationForm = e.target;
+  const form = jsonifyForm(registrationForm);
+
+  const postReq = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(form),
+  };
+
+  fetch('https://weak-puce-toad-garb.cyclic.app/', postReq).catch((error) =>
+    console.log(error)
+  );
+
+  window.location.href = 'http://localhost:3000/registered';
+};
+
 const Register = () => {
   return (
     <body id='register'>
       <div className='card'>
         <h3>Create an account</h3>
-        <form onsubmit='window.location.href = "/registered"'>
+        <form
+          // action='https://weak-puce-toad-garb.cyclic.app/'
+          onSubmit={onsubmitHandler}
+        >
           <div className='field'>
             <div>Email</div>
             <input name='Email' type='email' />
@@ -32,8 +69,8 @@ const Register = () => {
             <input
               className='submit'
               type='submit'
-              formAction='https://weak-puce-toad-garb.cyclic.app/'
-              formMethod='post'
+              // formAction='https://weak-puce-toad-garb.cyclic.app/'
+              // formMethod='post'
               name='Create account'
               value='Create account'
             />
