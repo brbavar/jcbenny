@@ -25,11 +25,13 @@ const onsubmitHandler = (e) => {
     body: JSON.stringify(form),
   };
 
+  console.log(`form contents: ${JSON.stringify(form)}`);
+
   fetch('https://weak-puce-toad-garb.cyclic.app/', postReq).catch((error) =>
     console.log(error)
   );
 
-  window.location.href = 'http://localhost:3000/registered';
+  // window.location.href = 'http://localhost:3000/registered';
 };
 
 const Register = () => {
