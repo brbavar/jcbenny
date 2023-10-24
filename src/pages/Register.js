@@ -28,7 +28,10 @@ const onsubmitHandler = (e) => {
   console.log(`form contents: ${JSON.stringify(form)}`);
 
   fetch('https://weak-puce-toad-garb.cyclic.app/', postReq)
-    .then((window.location.href = '/registered'))
+    .then(
+      (window.location.href = '/registered'),
+      console.log('Promise rejected')
+    )
     .catch((error) => console.log(error));
 };
 
