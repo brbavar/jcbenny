@@ -14,25 +14,27 @@ const jsonifyForm = (form) => {
 const onsubmitHandler = (e) => {
   e.preventDefault();
 
-  const registrationForm = e.target;
-  const form = jsonifyForm(registrationForm);
+  const form = e.target;
+  const formData = jsonifyForm(form);
+  // const formData = new FormData(form);
 
   const postReq = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(form),
+    body: JSON.stringify(formData),
+    // body: formData,
   };
 
-  console.log(`form contents: ${JSON.stringify(form)}`);
+  // console.log(`form contents: ${JSON.stringify(form)}`);
 
-  fetch('https://weak-puce-toad-garb.cyclic.app/', postReq)
-    .then(
-      (window.location.href = '/registered'),
-      console.log('Promise rejected')
-    )
-    .catch((error) => console.log(error));
+  fetch('https://weak-puce-toad-garb.cyclic.app/', postReq).catch((error) =>
+    console.log(error)
+  );
+  // fetch('https://weak-puce-toad-garb.cyclic.app/', postReq)
+  //   .then((window.location.href = '/registered'))
+  //   .catch((error) => console.log(error));
 };
 
 const Register = () => {
