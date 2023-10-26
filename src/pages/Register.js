@@ -11,6 +11,14 @@ const jsonifyForm = (form) => {
   return jsonifiedForm;
 };
 
+const onfulfilled = (response) => {
+  const card = document.querySelector('#register > div.card');
+  card.querySelectorAll('*').forEach((elem) => elem.remove());
+  const h2 = document.createElement('h2');
+  card.appendChild(h2);
+  h2.textContent = 'Your account was successfully created!';
+};
+
 const onsubmitHandler = (e) => {
   e.preventDefault();
 
@@ -29,12 +37,9 @@ const onsubmitHandler = (e) => {
 
   // console.log(`form contents: ${JSON.stringify(form)}`);
 
-  fetch('https://weak-puce-toad-garb.cyclic.app/', postReq).catch((error) =>
-    console.log(error)
-  );
-  // fetch('https://weak-puce-toad-garb.cyclic.app/', postReq)
-  //   .then((window.location.href = '/registered'))
-  //   .catch((error) => console.log(error));
+  fetch('https://weak-puce-toad-garb.cyclic.app/', postReq)
+    .then(onfulfilled)
+    .catch((error) => console.log(error));
 };
 
 const Register = () => {
