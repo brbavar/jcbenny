@@ -373,7 +373,7 @@ input.submit {
   }
 
   .eye-icon {
-    transform: scale(0.25) translateY(25px);
+    transform: scale(0.25) translateY(17px);
   }
 
   button {
