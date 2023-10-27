@@ -289,19 +289,38 @@ form {
   width: 350px;
 }
 
+.field {
+  position: relative;
+}
+
 .field > input,
 .name-section .field {
   width: 100%;
 }
 
 .password-section {
-  display: flex;
-  flex-direction: column;
   gap: 1em;
+  position: relative;
+}
+
+/* .password-section .field::before {
+  content: url('eye-icon.svg');
+  height: 10px;
+  width: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+} */
+
+.eye-icon {
+  position: absolute;
+  transform: scale(0.25);
+  top: -2.25px;
+  right: -30px;
 }
 
 .name-section {
-  display: flex;
+  /* display: flex; */
   flex-direction: row;
   gap: 2em;
 }
@@ -313,6 +332,12 @@ input.submit {
   background-color: black;
   border-radius: 5px;
   padding: 10px 0;
+}
+
+.form-err {
+  background-color: rgba(rgba(156, 3, 3, 0.56));
+  color: white;
+  border-radius: 10px;
 }
 
 /* @media (pointer: none), (pointer: coarse) {
