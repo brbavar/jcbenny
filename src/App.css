@@ -372,6 +372,10 @@ input.submit {
     transform: scale(0.75);
   }
 
+  .eye-icon {
+    transform: translateY(5px);
+  }
+
   button {
     font-size: 24pt;
     height: 100px;
