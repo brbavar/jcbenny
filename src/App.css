@@ -319,6 +319,10 @@ form {
   right: -30px;
 }
 
+.eye-icon:hover {
+  opacity: 0.5;
+}
+
 .name-section {
   /* display: flex; */
   flex-direction: row;
