@@ -11,7 +11,7 @@ const jsonifyForm = (form) => {
   return jsonifiedForm;
 };
 
-const onsubmitHandler = (e, method, onfulfilled) => {
+const onsubmitHandler = (e, method, onfulfilled, onrejected) => {
   e.preventDefault();
 
   const form = e.target;
@@ -34,7 +34,8 @@ const onsubmitHandler = (e, method, onfulfilled) => {
     }`,
     req
   )
-    .then(onfulfilled)
+    .then(onfulfilled, onrejected)
     .catch((error) => console.log(error));
 };
+
 export { onsubmitHandler };

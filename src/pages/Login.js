@@ -6,7 +6,11 @@ import { eyeOpen, togglePasswordVisibility } from '../lib/password-visibility';
 import { onsubmitHandler } from '../lib/form-handling';
 
 const onfulfilled = (response) => {
-  return;
+  console.log(`Promise resolved\nresponse = ${Object.keys(response)}`);
+};
+
+const onrejected = (response) => {
+  console.log(`Promise rejected\nResponse keys are ${Object.keys(response)}`);
 };
 
 const Login = () => {
@@ -32,7 +36,9 @@ const Login = () => {
     <body id='login'>
       <div className='card'>
         <h3>Sign in</h3>
-        <form onSubmit={(e) => onsubmitHandler(e, 'GET', onfulfilled)}>
+        <form
+          onSubmit={(e) => onsubmitHandler(e, 'GET', onfulfilled, onrejected)}
+        >
           <div className='field'>
             <div>Email</div>
             <input type='email' />
