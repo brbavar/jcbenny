@@ -19,13 +19,21 @@ const onsubmitHandler = (e, method, onfulfilled) => {
 
   const req = {
     method: method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData),
   };
 
-  fetch('https://weak-puce-toad-garb.cyclic.app/', req)
+  if (method === 'POST') {
+    req.headers = { 'Content-Type': 'application/json' };
+    req.body = JSON.stringify(formData);
+  }
+
+  fetch(
+    `https://weak-puce-toad-garb.cyclic.app/${
+      method === 'GET'
+        ? `emails/${formData.Email}/passwords/${formData.Password}`
+        : ''
+    }`,
+    req
+  )
     .then(onfulfilled)
     .catch((error) => console.log(error));
 };
