@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 
-import EyeIcon from '../components/EyeIcon';
+import EyeIconBox from '../components/EyeIconBox';
 import { eyeOpen, togglePasswordVisibility } from '../lib/password-visibility';
 
 import { onsubmitHandler } from '../lib/form-handling';
 
-const onfulfilled = (response) => {
+const onfulfilled = async (response) => {
+  console.log(await response.json());
   if (response.status === 400) {
     return;
   } else {
@@ -58,23 +59,35 @@ const Register = () => {
           <div className='password-section'>
             <div className='field'>
               <div>Password</div>
-              <input name='Password' type={passVis} />
-              <EyeIcon
-                eyeClickHandler={eyeClickHandler}
-                svgPath={svgPath}
-                svgCX={svgCX}
-                lineWidth={lineWidth}
-              />
+              <div className='password-subfield'>
+                <input
+                  style={{ width: '100%' }}
+                  name='Password'
+                  type={passVis}
+                />
+                <EyeIconBox
+                  eyeClickHandler={eyeClickHandler}
+                  svgPath={svgPath}
+                  svgCX={svgCX}
+                  lineWidth={lineWidth}
+                />
+              </div>
             </div>
             <div className='field'>
               <div>Confirm password</div>
-              <input name='Confirm password' type={passVis} />
-              <EyeIcon
-                eyeClickHandler={eyeClickHandler}
-                svgPath={svgPath}
-                svgCX={svgCX}
-                lineWidth={lineWidth}
-              />
+              <div className='password-subfield'>
+                <input
+                  style={{ width: '100%' }}
+                  name='Confirm password'
+                  type={passVis}
+                />
+                <EyeIconBox
+                  eyeClickHandler={eyeClickHandler}
+                  svgPath={svgPath}
+                  svgCX={svgCX}
+                  lineWidth={lineWidth}
+                />
+              </div>
             </div>
           </div>
           <div className='field'>

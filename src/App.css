@@ -137,8 +137,10 @@ body * {
 
 #menu {
   position: absolute;
-  top: 80px;
+  top: 81px;
   left: 0;
+  height: 100%;
+  width: 100%;
   padding: 30px;
   font-size: 20pt;
   display: flex;
@@ -176,6 +178,34 @@ body * {
   to {
     opacity: 0;
     transform: translateY(0);
+  }
+}
+
+#menu.shown {
+  animation: whiten 0.25s;
+  background-color: white;
+}
+
+#menu.hidden {
+  animation: unwhiten 0.25s;
+  background-color: transparent;
+}
+
+@keyframes whiten {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: white;
+  }
+}
+
+@keyframes unwhiten {
+  from {
+    background-color: white;
+  }
+  to {
+    background-color: transparent;
   }
 }
 
@@ -298,29 +328,41 @@ form {
   width: 100%;
 }
 
+.password-subfield {
+  width: 110%;
+  display: flex;
+  flex-direction: row;
+}
+
 .password-section {
   gap: 1em;
   position: relative;
 }
 
-/* .password-section .field::before {
-  content: url('eye-icon.svg');
-  height: 10px;
-  width: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-} */
+input:focus {
+  outline: none;
+}
 
 .eye-icon {
-  position: absolute;
-  transform: scale(0.25);
-  top: -2.25px;
-  right: -30px;
+  /* position: absolute; */
+  transform: scale(0.5);
+  /* top: -2.25px; */
+  /* right: -30px; */
 }
 
 .eye-icon:hover {
   opacity: 0.5;
+}
+
+.eye-icon-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: rgba(230, 230, 230, 0.5); */
+  height: 23px;
+  width: 45px;
+  /* border: solid 1px rgba(0, 0, 0, 0.3); */
+  /* transform: translateX(-1px); */
 }
 
 .name-section {
@@ -344,32 +386,12 @@ input.submit {
   border-radius: 10px;
 }
 
-/* @media (pointer: none), (pointer: coarse) {
-  #menu-bar,
-  #login-bar {
-    height: 10vh;
-  }
+/* Styles for intro page below */
 
-  #menu {
-    transform: scale(2) translate(35px, 120px);
-  }
-
-  button {
-    font-size: 24pt;
-    border-radius: 50px;
-    padding: 20px;
-    height: 100px;
-    width: 400px;
-  }
-
-  #menu-icon {
-    transform: scale(1.5) translate(-40px, 30px);
-  }
-
-  .card {
-    transform: scale(2);
-  }
-} */
+p,
+h1 {
+  margin: 20px;
+}
 
 @media (pointer: none), (pointer: coarse) {
   .card {
@@ -402,6 +424,5 @@ input.submit {
     height: 50px;
     width: 175px;
     transform: translateX(-35px);
-    /* transform: scale(0.75) translateX(-140px); */
   }
 }

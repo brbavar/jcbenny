@@ -2,7 +2,9 @@ const jsonifyForm = (form) => {
   const formKeyNodes = form.querySelectorAll(
     '.field > :nth-child(1):not(.submit)'
   );
-  const formValNodes = form.querySelectorAll('.field > :nth-child(2)');
+  const formValNodes = form.querySelectorAll(
+    '.field > :nth-child(2):not(.password-subfield), .password-subfield > :nth-child(1)'
+  );
 
   const jsonifiedForm = {};
   for (var i = 0; i < formKeyNodes.length; i++)

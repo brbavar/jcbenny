@@ -1,16 +1,59 @@
 import { useState, useEffect } from 'react';
 
-import EyeIcon from '../components/EyeIcon';
+import EyeIconBox from '../components/EyeIconBox';
 import { eyeOpen, togglePasswordVisibility } from '../lib/password-visibility';
 
 import { onsubmitHandler } from '../lib/form-handling';
 
-const onfulfilled = (response) => {
-  console.log(`Promise resolved\nresponse = ${Object.keys(response)}`);
+const onfulfilled = async (response) => {
+  const nameOfUser = await response.text();
+  console.log(`Promise resolved\nresponse = ${nameOfUser}`);
+
+  const loginBody = document.querySelector('#login');
+  loginBody.querySelectorAll('*').forEach((elem) => elem.remove());
+  loginBody.style.flexDirection = 'column';
+
+  const headerBox = document.createElement('div');
+  loginBody.appendChild(headerBox);
+
+  // const br = document.createElement('br');
+  // loginBody.appendChild(br);
+
+  const h1 = document.createElement('h1');
+  h1.textContent = `HEY THERE, ${nameOfUser.toUpperCase()}!`;
+  h1.style.fontFamily = 'Arial';
+  h1.style.color = 'white';
+  headerBox.appendChild(h1);
+
+  const btnBox = document.createElement('div');
+  btnBox.style.display = 'flex';
+  btnBox.style.flexDirection = 'column';
+  btnBox.style.gap = '1ex';
+  loginBody.appendChild(btnBox);
+
+  const links = [];
+  const hrefs = ['intro', 'belief', 'practice', 'pricing', 'contact'];
+  const btns = [];
+  const labels = [
+    'Get started',
+    'Explore religious belief',
+    'Explore religious practice',
+    'See membership options',
+    'Contact us',
+  ];
+  for (let i = 0; i < 5; i++) {
+    links[i] = document.createElement('a');
+    links[i].href = hrefs[i];
+    btnBox.appendChild(links[i]);
+
+    btns[i] = document.createElement('button');
+    btns[i].textContent = labels[i];
+    links[i].appendChild(btns[i]);
+  }
 };
 
-const onrejected = (response) => {
-  console.log(`Promise rejected\nResponse keys are ${Object.keys(response)}`);
+const onrejected = async (response) => {
+  console.log(`Promise rejected\nresponse = ${await response.json()}`);
 };
 
 const Login = () => {
@@ -45,19 +88,21 @@ const Login = () => {
           </div>
           <div className='field'>
             <div>Password</div>
-            <input type={passVis} />
-            <EyeIcon
-              eyeClickHandler={eyeClickHandler}
-              svgPath={svgPath}
-              svgCX={svgCX}
-              lineWidth={lineWidth}
-            />
+            <div className='password-subfield'>
+              <input style={{ width: '100%' }} type={passVis} />
+              <EyeIconBox
+                eyeClickHandler={eyeClickHandler}
+                svgPath={svgPath}
+                svgCX={svgCX}
+                lineWidth={lineWidth}
+              />
+            </div>
           </div>
           <div className='field'>
             <input className='submit' type='submit' value='SIGN IN' />
           </div>
           <p style={{ fontSize: '10pt' }}>
-            New to Litrit? <a href='register'>Create an account.</a>
+            New to Religify? <a href='register'>Create an account.</a>
           </p>
         </form>
       </div>
