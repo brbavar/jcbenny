@@ -397,7 +397,7 @@ h1 {
   .card {
     transform: scale(0.75);
   }
-
+/*
   #login .eye-icon {
     transform: scale(0.25) translateY(5px);
   }
@@ -405,7 +405,7 @@ h1 {
   #register .eye-icon {
     transform: scale(0.25) translateY(13px);
   }
-
+*/
   button {
     font-size: 24pt;
     height: 100px;
