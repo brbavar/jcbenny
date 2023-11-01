@@ -388,7 +388,7 @@ input.submit {
 
 /* Styles for intro page below */
 
-p,
+p:not(form *),
 h1 {
   margin: 20px;
 }

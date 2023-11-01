@@ -6,8 +6,8 @@ const LoginBar = forwardRef((props, ref) => {
       <a href='login'>
         <button>Sign in</button>
       </a>
-      <a href='start'>
-        <button>Start free trial</button>
+      <a href='lorem-ipsum'>
+        <button>Lorem ipsum</button>
       </a>
     </div>
   );
