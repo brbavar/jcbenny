@@ -465,6 +465,10 @@ h1 {
     width: 350px;
   }
 
+  #menu {
+    font-size: 14pt;
+  }
+
   #login-bar > :nth-child(1) > button {
     font-size: 12pt;
     height: 50px;
