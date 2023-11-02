@@ -74,7 +74,7 @@ const Login = () => {
       <div className='card'>
         <h3>Sign in</h3>
         <form
-          onSubmit={(e) => onsubmitHandler(e, 'GET', onfulfilled, onrejected)}
+          onSubmit={(e) => onsubmitHandler(e, '/', 'GET', onfulfilled, onrejected)}
         >
           <div className='field'>
             <div>Email</div>
