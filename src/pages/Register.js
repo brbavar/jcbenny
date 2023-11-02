@@ -41,7 +41,7 @@ const Register = () => {
     <body id='register'>
       <div className='card'>
         <h3>Create an account</h3>
-        <form onSubmit={(e) => onsubmitHandler(e, 'POST', onfulfilled)}>
+        <form onSubmit={(e) => onsubmitHandler(e, '/register', 'POST', onfulfilled)}>
           <div className='field'>
             <div>Email</div>
             <input name='Email' type='email' />
