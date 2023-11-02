@@ -1,10 +1,12 @@
 const Found = () => {
     return (
         <form>
-            <label>
+            <label for='functions'>What good is this religion?
             </label>
-            <select>
-                <option>
+            <select name='functions' id='functions'>
+                <option>Promotes social cohesion
+                </option>
+                <option>Promotes individual happiness or satisfaction
                 </option>
             </select>
         </form>
