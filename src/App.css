@@ -7,11 +7,16 @@ body * {
   color: black;
 }
 
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 #menu-bar {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 80px;
-  background-image: linear-gradient(
+  background: linear-gradient(
     to bottom,
     rgba(139, 55, 55, 0.65),
     rgba(139, 55, 55, 0.6),
@@ -139,13 +144,14 @@ body * {
   position: absolute;
   top: 81px;
   left: 0;
-  height: 100%;
+  /* height: 74%; */
   width: 100%;
-  padding: 30px;
+  padding: 30px 0 0 30px;
   font-size: 20pt;
   display: flex;
   flex-direction: column;
   gap: 2em;
+  z-index: 1;
 }
 
 #menu.shown > * {
@@ -181,7 +187,7 @@ body * {
   }
 }
 
-#menu.shown {
+/* #menu.shown {
   animation: whiten 0.25s;
   background-color: white;
 }
@@ -207,7 +213,7 @@ body * {
   to {
     background-color: transparent;
   }
-}
+} */
 
 #overlay:not(.shown):not(.hidden),
 #login-bar:not(.shown):not(.hidden) {
@@ -279,7 +285,8 @@ button:hover {
 /* STYLES FOR LOGIN & REGISTER PAGES BELOW */
 
 body#login,
-body#register {
+body#register,
+body#found {
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -307,16 +314,22 @@ body#register {
   padding-right: 43px;
 }
 
-form,
-form > div {
+form {
+  height: 150px;
+  width: 350px;
+}
+
+#register form,
+#login form,
+#register form > div,
+#login form > div {
   display: flex;
   flex-direction: column;
 }
 
-form {
+#register form,
+#login form {
   gap: 3em;
-  height: 150px;
-  width: 350px;
 }
 
 .field {
@@ -341,6 +354,10 @@ form {
 
 input:focus {
   outline: none;
+}
+
+select {
+  margin-top: 10px;
 }
 
 .eye-icon {
@@ -393,11 +410,47 @@ h1 {
   margin: 20px;
 }
 
+/* Styles for philosophers page below */
+
+.philosopher-grid {
+  display: grid;
+  margin: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.philosopher-grid > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid white;
+  border-radius: 25px;
+  box-shadow: 2px 5px 10px black;
+  background-color: rgb(40, 40, 40);
+}
+
+.philosopher-grid img {
+  border-radius: 50%;
+  filter: drop-shadow(2px 4px 2px black);
+}
+
+.philosopher-grid p,
+.philosopher-grid h2 {
+  color: white;
+}
+
+.philosopher-grid h2 {
+  text-shadow: 0px 1px 3px red;
+}
+
 @media (pointer: none), (pointer: coarse) {
   .card {
     transform: scale(0.75);
   }
-/*
+  /*
   #login .eye-icon {
     transform: scale(0.25) translateY(5px);
   }

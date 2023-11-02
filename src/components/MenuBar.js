@@ -36,6 +36,17 @@ const MenuIcon = (props) => {
       onClick={() => {
         setXified(!xified);
         if (!clickedOnce) setClickedOnce(true);
+
+        const pageTopElem = document.querySelector('#root :nth-child(1)');
+        const coverables = pageTopElem.querySelectorAll(
+          ':not(#menu-bar *, #login-bar *, #menu *, #menu, #menu-bar, #login-bar)'
+        );
+        for (let elem of coverables) elem.style.opacity = xified ? 1 : 0;
+
+        const html = document.documentElement;
+        html.style.maxHeight = xified ? 0 : '100%';
+        html.style.overflowY = xified ? 'visible' : 'hidden';
+
         for (let elem of opacifiables) toggleOpacity(elem);
       }}
       className={xified ? 'x-ified' : clickedOnce ? 'de-x-ified' : ''}

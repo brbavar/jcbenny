@@ -1,7 +1,5 @@
 const Find = () => {
-    return (
-    
-    );
+  return <body id='find'></body>;
 };
 
 export default Find;

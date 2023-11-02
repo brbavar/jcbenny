@@ -8,11 +8,11 @@ const Home = () => {
   const menuRef = useRef(null);
   const loginBarRef = useRef(null);
   return (
-    <div>
+    <body id='home'>
       <MenuBar menuRef={menuRef} loginBarRef={loginBarRef} />
       <Menu ref={menuRef} />
       <LoginBar ref={loginBarRef} />
-    </div>
+    </body>
   );
 };
 

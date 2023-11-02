@@ -32,13 +32,9 @@ const onfulfilled = async (response) => {
   loginBody.appendChild(btnBox);
 
   const links = [];
-  constconst hrefs = ['intro', 'found-a-religion', 'religion-found'];
+  const hrefs = ['intro', 'found-a-religion', 'religion-found'];
   const btns = [];
-  const labels = [
-    'Get started',
-    'Found a religion',
-    'Identify a religion',
-  ];
+  const labels = ['Get started', 'Found a religion', 'Identify a religion'];
   for (let i = 0; i < 3; i++) {
     links[i] = document.createElement('a');
     links[i].href = hrefs[i];
