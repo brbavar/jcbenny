@@ -13,7 +13,7 @@ const jsonifyForm = (form) => {
   return jsonifiedForm;
 };
 
-const onsubmitHandler = (e, method, onfulfilled, onrejected) => {
+const onsubmitHandler = (e, path, method, onfulfilled, onrejected) => {
   e.preventDefault();
 
   const form = e.target;
@@ -29,7 +29,7 @@ const onsubmitHandler = (e, method, onfulfilled, onrejected) => {
   }
 
   fetch(
-    `https://weak-puce-toad-garb.cyclic.app/${
+    `https://weak-puce-toad-garb.cyclic.app${path}/${
       method === 'GET'
         ? `emails/${formData.Email}/passwords/${formData.Password}`
         : ''
