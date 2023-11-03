@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import Intro from './pages/Intro';
 import Catalog from './pages/Catalog';
 
 import './index.css';
@@ -20,7 +19,6 @@ root.render(
         <Route path='/' element={<App />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/intro' element={<Intro />} />
         <Route path='/catalog' element={<Catalog />} />
       </Routes>
     </BrowserRouter>
