@@ -1,5 +1,3 @@
-// Adding this comment just to redeploy to Netlify
-
 import { useState, useEffect } from 'react';
 
 import EyeIconBox from '../components/EyeIconBox';
@@ -34,9 +32,9 @@ const onfulfilled = async (response) => {
   loginBody.appendChild(btnBox);
 
   const links = [];
-  const hrefs = ['intro', 'found-a-religion', 'religion-found'];
+  const hrefs = ['home', 'lorem-ipsum-1', 'lorem-ipsum-2'];
   const btns = [];
-  const labels = ['Get started', 'Found a religion', 'Identify a religion'];
+  const labels = ['Get started', 'Lorem ipsum', 'Lorem ipsum'];
   for (let i = 0; i < 3; i++) {
     links[i] = document.createElement('a');
     links[i].href = hrefs[i];
@@ -76,7 +74,9 @@ const Login = () => {
       <div className='card'>
         <h3>Sign in</h3>
         <form
-          onSubmit={(e) => onsubmitHandler(e, '/', 'GET', onfulfilled, onrejected)}
+          onSubmit={(e) =>
+            onsubmitHandler(e, '/', 'GET', onfulfilled, onrejected)
+          }
         >
           <div className='field'>
             <div>Email</div>
@@ -98,7 +98,7 @@ const Login = () => {
             <input className='submit' type='submit' value='SIGN IN' />
           </div>
           <p style={{ fontSize: '10pt' }}>
-            New to Religify? <a href='register'>Create an account.</a>
+            New to JCBenny? <a href='register'>Create an account.</a>
           </p>
         </form>
       </div>

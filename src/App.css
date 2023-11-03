@@ -410,9 +410,9 @@ h1 {
   margin: 20px;
 }
 
-/* Styles for philosophers page below */
+/* Styles for items page below */
 
-.philosopher-grid {
+.item-grid {
   display: grid;
   margin: 30px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -420,7 +420,7 @@ h1 {
   row-gap: 20px;
 }
 
-.philosopher-grid > * {
+.item-grid > * {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -432,17 +432,17 @@ h1 {
   background-color: rgb(40, 40, 40);
 }
 
-.philosopher-grid img {
+.item-grid img {
   border-radius: 50%;
   filter: drop-shadow(2px 4px 2px black);
 }
 
-.philosopher-grid p,
-.philosopher-grid h2 {
+.item-grid p,
+.item-grid h2 {
   color: white;
 }
 
-.philosopher-grid h2 {
+.item-grid h2 {
   text-shadow: 0px 1px 3px red;
 }
 
