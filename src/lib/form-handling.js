@@ -29,7 +29,7 @@ const onsubmitHandler = (e, path, method, onfulfilled, onrejected) => {
   }
 
   fetch(
-    `https://weak-puce-toad-garb.cyclic.app${path}/${
+    `https://weak-puce-toad-garb.cyclic.app${path}${
       method === 'GET'
         ? `emails/${formData.Email}/passwords/${formData.Password}`
         : ''
