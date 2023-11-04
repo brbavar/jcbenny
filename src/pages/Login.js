@@ -47,7 +47,7 @@ const onfulfilled = async (response) => {
 };
 
 const onrejected = async (response) => {
-  console.log(`Promise rejected\nresponse = ${await response.text()}`);
+  console.log(`Promise rejected\nresponse = ${await response}`);
 };
 
 const Login = () => {
