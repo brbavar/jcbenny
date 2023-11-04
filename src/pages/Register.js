@@ -37,14 +37,23 @@ const Register = () => {
       [lineWidth, setLineWidth]
     );
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <body id='register'>
       <div className='card'>
         <h3>Create an account</h3>
-        <form onSubmit={(e) => onsubmitHandler(e, '/register', 'POST', onfulfilled)}>
+        <form
+          onSubmit={(e) => onsubmitHandler(e, '/register', 'POST', onfulfilled)}
+        >
           <div className='field'>
             <div>Email</div>
-            <input name='Email' type='email' />
+            <input
+              name='Email'
+              type='email'
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className='name-section'>
             <div className='field'>
@@ -64,6 +73,7 @@ const Register = () => {
                   style={{ width: '100%' }}
                   name='Password'
                   type={passVis}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <EyeIconBox
                   eyeClickHandler={eyeClickHandler}
@@ -96,6 +106,7 @@ const Register = () => {
               type='submit'
               name='Create account'
               value='Create account'
+              disabled={!(email && password)}
             />
           </div>
           <p style={{ fontSize: '10pt' }}>

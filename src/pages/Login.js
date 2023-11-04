@@ -69,6 +69,9 @@ const Login = () => {
       [lineWidth, setLineWidth]
     );
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <body id='login'>
       <div className='card'>
@@ -80,12 +83,16 @@ const Login = () => {
         >
           <div className='field'>
             <div>Email</div>
-            <input type='email' />
+            <input type='email' onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className='field'>
             <div>Password</div>
             <div className='password-subfield'>
-              <input style={{ width: '100%' }} type={passVis} />
+              <input
+                style={{ width: '100%' }}
+                type={passVis}
+                onChange={(e) => setPassword(e.target.value)}
+              />
               <EyeIconBox
                 eyeClickHandler={eyeClickHandler}
                 svgPath={svgPath}
@@ -95,7 +102,12 @@ const Login = () => {
             </div>
           </div>
           <div className='field'>
-            <input className='submit' type='submit' value='SIGN IN' />
+            <input
+              className='submit'
+              type='submit'
+              value='SIGN IN'
+              disabled={!(email && password)}
+            />
           </div>
           <p style={{ fontSize: '10pt' }}>
             New to JCBenny? <a href='register'>Create an account.</a>
