@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import EyeIconBox from '../components/EyeIconBox';
 import { eyeOpen, togglePasswordVisibility } from '../lib/password-visibility';
 
-import { onsubmitHandler } from '../lib/form-handling';
+import onsubmitHandler from '../lib/onSubmitHandler';
 
 const onfulfilled = async (response) => {
   const nameOfUser = await response.text();

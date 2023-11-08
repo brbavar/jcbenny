@@ -1,22 +1,10 @@
 import { useState, useEffect } from 'react';
+import useToken from '../lib/useToken';
 
 import EyeIconBox from '../components/EyeIconBox';
 import { eyeOpen, togglePasswordVisibility } from '../lib/password-visibility';
 
-import { onsubmitHandler } from '../lib/form-handling';
-
-const onfulfilled = async (response) => {
-  console.log(await response.json());
-  if (response.status === 400) {
-    return;
-  } else {
-    const card = document.querySelector('#register > div.card');
-    card.querySelectorAll('*').forEach((elem) => elem.remove());
-    const h2 = document.createElement('h2');
-    card.appendChild(h2);
-    h2.textContent = 'Your account was successfully created!';
-  }
-};
+import onsubmitHandler from '../lib/onSubmitHandler';
 
 const Register = () => {
   useEffect(() => {
@@ -39,6 +27,25 @@ const Register = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [token, setToken] = useToken();
+
+  const onfulfilled = async (response) => {
+    console.log(await response.json());
+
+    ({ token } = await response.json());
+    setToken(token);
+
+    if (response.status === 400) {
+      return;
+    } else {
+      const card = document.querySelector('#register > div.card');
+      card.querySelectorAll('*').forEach((elem) => elem.remove());
+      const h2 = document.createElement('h2');
+      card.appendChild(h2);
+      h2.textContent = 'Your account was successfully created!';
+    }
+  };
 
   return (
     <body id='register'>
