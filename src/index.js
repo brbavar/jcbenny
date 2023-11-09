@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
 
 import App from './App';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import MyProfile from './pages/MyProfile';
 import Catalog from './pages/Catalog';
 
 import './index.css';
@@ -19,6 +21,7 @@ root.render(
         <Route path='/' element={<App />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
+        <PrivateRoute path='/my-profile' element={<MyProfile />} />
         <Route path='/catalog' element={<Catalog />} />
       </Routes>
     </BrowserRouter>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import useToken from '../lib/useToken';
 
 import EyeIconBox from '../components/EyeIconBox';
@@ -30,6 +31,8 @@ const Register = () => {
 
   const [token, setToken] = useToken();
 
+  const history = useHistory();
+
   const onfulfilled = async (response) => {
     console.log(await response.json());
 
@@ -44,6 +47,7 @@ const Register = () => {
       const h2 = document.createElement('h2');
       card.appendChild(h2);
       h2.textContent = 'Your account was successfully created!';
+      setTimeout(() => history.push('/my-profile'), 4000);
     }
   };
 
