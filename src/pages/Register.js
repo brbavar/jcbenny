@@ -45,7 +45,7 @@ const Register = () => {
       const h2 = document.createElement('h2');
       card.appendChild(h2);
       h2.textContent = 'Your account was successfully created!';
-      setTimeout(() => navigate('/private'), 4000);
+      setTimeout(() => navigate('/private/my-profile'), 4000);
     }
   };
 
