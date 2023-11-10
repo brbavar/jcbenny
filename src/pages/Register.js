@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import useToken from '../lib/useToken';
+import { useNavigate } from 'react-router-dom';
+import { useToken } from '../lib/useToken';
 
 import EyeIconBox from '../components/EyeIconBox';
 import { eyeOpen, togglePasswordVisibility } from '../lib/password-visibility';
@@ -29,13 +29,11 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [token, setToken] = useToken();
+  let [token, setToken] = useToken();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const onfulfilled = async (response) => {
-    console.log(await response.json());
-
     ({ token } = await response.json());
     setToken(token);
 
@@ -47,7 +45,7 @@ const Register = () => {
       const h2 = document.createElement('h2');
       card.appendChild(h2);
       h2.textContent = 'Your account was successfully created!';
-      setTimeout(() => history.push('/my-profile'), 4000);
+      setTimeout(() => navigate('/private'), 4000);
     }
   };
 
