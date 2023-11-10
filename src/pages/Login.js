@@ -1,54 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useToken } from '../lib/useToken';
 
 import EyeIconBox from '../components/EyeIconBox';
 import { eyeOpen, togglePasswordVisibility } from '../lib/password-visibility';
 
 import onsubmitHandler from '../lib/onSubmitHandler';
-
-const onfulfilled = async (response) => {
-  const nameOfUser = await response.text();
-  console.log(`Promise resolved\nresponse = ${nameOfUser}`);
-
-  const loginBody = document.querySelector('#login');
-  loginBody.querySelectorAll('*').forEach((elem) => elem.remove());
-  loginBody.style.flexDirection = 'column';
-
-  const headerBox = document.createElement('div');
-  loginBody.appendChild(headerBox);
-
-  // const br = document.createElement('br');
-  // loginBody.appendChild(br);
-
-  const h1 = document.createElement('h1');
-  h1.textContent = `HEY THERE, ${nameOfUser.toUpperCase()}!`;
-  h1.style.fontFamily = 'Arial';
-  h1.style.color = 'white';
-  headerBox.appendChild(h1);
-
-  const btnBox = document.createElement('div');
-  btnBox.style.display = 'flex';
-  btnBox.style.flexDirection = 'column';
-  btnBox.style.gap = '1ex';
-  loginBody.appendChild(btnBox);
-
-  const links = [];
-  const hrefs = ['home', 'lorem-ipsum-1', 'lorem-ipsum-2'];
-  const btns = [];
-  const labels = ['Get started', 'Lorem ipsum', 'Lorem ipsum'];
-  for (let i = 0; i < 3; i++) {
-    links[i] = document.createElement('a');
-    links[i].href = hrefs[i];
-    btnBox.appendChild(links[i]);
-
-    btns[i] = document.createElement('button');
-    btns[i].textContent = labels[i];
-    links[i].appendChild(btns[i]);
-  }
-};
-
-const onrejected = async (response) => {
-  console.log(`Promise rejected\nresponse = ${await response}`);
-};
 
 const Login = () => {
   useEffect(() => {
@@ -71,6 +27,57 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  let [token, setToken] = useToken();
+
+  const onfulfilled = async (response) => {
+    ({ token } = await response.json());
+    setToken(token);
+
+    // const nameOfUser = await response.text();
+    const nameOfUser = 'Lorem Ipsum';
+    console.log(`Promise resolved\nresponse = ${token}`);
+
+    const loginBody = document.querySelector('#login');
+    loginBody.querySelectorAll('*').forEach((elem) => elem.remove());
+    loginBody.style.flexDirection = 'column';
+
+    const headerBox = document.createElement('div');
+    loginBody.appendChild(headerBox);
+
+    // const br = document.createElement('br');
+    // loginBody.appendChild(br);
+
+    const h1 = document.createElement('h1');
+    h1.textContent = `HEY THERE, ${nameOfUser.toUpperCase()}!`;
+    h1.style.fontFamily = 'Arial';
+    h1.style.color = 'white';
+    headerBox.appendChild(h1);
+
+    const btnBox = document.createElement('div');
+    btnBox.style.display = 'flex';
+    btnBox.style.flexDirection = 'column';
+    btnBox.style.gap = '1ex';
+    loginBody.appendChild(btnBox);
+
+    const links = [];
+    const hrefs = ['home', 'private/my-profile', 'lorem-ipsum-2'];
+    const btns = [];
+    const labels = ['Get started', 'View profile', 'Lorem ipsum'];
+    for (let i = 0; i < 3; i++) {
+      links[i] = document.createElement('a');
+      links[i].href = hrefs[i];
+      btnBox.appendChild(links[i]);
+
+      btns[i] = document.createElement('button');
+      btns[i].textContent = labels[i];
+      links[i].appendChild(btns[i]);
+    }
+  };
+
+  const onrejected = async (response) => {
+    console.log(`Promise rejected\nresponse = ${await response}`);
+  };
 
   return (
     <body id='login'>
