@@ -61,9 +61,9 @@ const Login = () => {
     loginBody.appendChild(btnBox);
 
     const links = [];
-    const hrefs = ['home', 'private/my-profile', 'lorem-ipsum-2'];
+    const hrefs = ['home', 'private/my-profile', 'sell-something']
     const btns = [];
-    const labels = ['Get started', 'View profile', 'Lorem ipsum'];
+    const labels = ['Get started', 'View profile', 'Sell something'];
     for (let i = 0; i < 3; i++) {
       links[i] = document.createElement('a');
       links[i].href = hrefs[i];
