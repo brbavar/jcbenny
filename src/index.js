@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import MyProfile from './pages/MyProfile';
 import Catalog from './pages/Catalog';
+import Sell from './pages/Sell';
 
 import './index.css';
 
@@ -25,6 +26,7 @@ root.render(
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/catalog' element={<Catalog />} />
+        <Route path='/sell-something' element={<Sell />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

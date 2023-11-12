@@ -286,7 +286,8 @@ button:hover {
 
 body#login,
 body#register,
-body#found {
+body#found,
+body#sell {
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -450,6 +451,18 @@ h1 {
 
 #profile .profile-pic {
   border-radius: 50%;
+}
+
+/* Styles for Sell.js below */
+
+body#sell {
+  background-image: linear-gradient(
+    60deg,
+    rgba(55, 126, 139, 0.8),
+    rgba(18, 248, 198, 0.8)
+  );
+  flex-direction: column;
+  gap: 20px;
 }
 
 @media (pointer: none), (pointer: coarse) {
