@@ -21,12 +21,12 @@ root.render(
       <Routes>
         <Route path='/private' element={<Auth />}>
           <Route path='/private/my-profile' element={<MyProfile />} />
+          <Route path='/private/sell-something' element={<Sell />} />
         </Route>
         <Route path='/' element={<App />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/catalog' element={<Catalog />} />
-        <Route path='/sell-something' element={<Sell />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
