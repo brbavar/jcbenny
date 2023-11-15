@@ -61,7 +61,7 @@ const Login = () => {
     loginBody.appendChild(btnBox);
 
     const links = [];
-    const hrefs = ['home', 'private/my-profile', 'sell-something']
+    const hrefs = ['home', 'private/my-profile', 'private/sell-something'];
     const btns = [];
     const labels = ['Get started', 'View profile', 'Sell something'];
     for (let i = 0; i < 3; i++) {
