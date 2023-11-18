@@ -27,7 +27,9 @@ export const EmailVerification = () => {
         setIsLoading(false);
       }
     };
-  });
+
+    loadVerification();
+  }, [setToken, VerificationString]);
 
   if (isLoading) return <p>Loading...</p>;
   if (!isSuccess) return <EmailNotVerified />;

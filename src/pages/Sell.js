@@ -17,7 +17,7 @@ const sendOpenAIPrompt = (e, description, email) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ Description: description, Email: email }),
+    body: JSON.stringify({ List: { Description: description }, Email: email }),
   })
     .then((res) => onfulfilled(res))
     .catch((error) => console.log(error));
