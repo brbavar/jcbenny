@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Auth } from './components/Auth';
 
 import App from './App';
 import Register from './pages/Register';
+import { VerifyEmail } from './pages/VerifyEmail';
+import { EmailVerification } from './pages/EmailVerification';
 import Login from './pages/Login';
 import MyProfile from './pages/MyProfile';
 import Catalog from './pages/Catalog';
@@ -25,8 +27,13 @@ root.render(
         </Route>
         <Route path='/' element={<App />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/please-verify' element={<VerifyEmail />} />
+        <Route
+          path='/verify-email/:VerificationString'
+          element={<EmailVerification />}
+        />
         <Route path='/login' element={<Login />} />
-        <Route path='/catalog' element={<Catalog />} />
+        <Route path='/shop' element={<Catalog />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
