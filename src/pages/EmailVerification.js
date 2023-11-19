@@ -15,9 +15,15 @@ export const EmailVerification = () => {
   useEffect(() => {
     const loadVerification = async () => {
       try {
-        const response = await axios.put('/verify-email', {
-          VerificationString,
-        });
+        const response = await axios.put(
+          'https://weak-puce-toad-garb.cyclic.app/verify-email',
+          {
+            VerificationString,
+          }
+        );
+
+        console.log(`response = ${JSON.stringify(response)}`);
+
         const { token } = response;
         setToken(token);
         setIsSuccess(true);
