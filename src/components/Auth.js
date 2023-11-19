@@ -6,6 +6,8 @@ export const Auth = (/*props*/) => {
 
   if (!user) return <Navigate to='/login' />;
 
+  console.log(`Made it to end of Auth. user = ${JSON.stringify(user)}`);
+
   return <Outlet />;
   // return <Route {...props} />;
 };

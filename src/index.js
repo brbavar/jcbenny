@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Auth } from './components/Auth';
 
 import App from './App';
+import { Auth } from './components/Auth';
 import Register from './pages/Register';
 import { VerifyEmail } from './pages/VerifyEmail';
 import { EmailVerification } from './pages/EmailVerification';
