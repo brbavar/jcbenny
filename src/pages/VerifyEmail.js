@@ -7,7 +7,7 @@ export const VerifyEmail = () => {
   useEffect(() => {
     setTimeout(() => {
       navigate('/');
-    }, 3000);
+    }, 10000);
   }, [navigate]);
 
   return (
