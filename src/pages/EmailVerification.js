@@ -7,12 +7,16 @@ import { EmailVerified } from '../components/EmailVerified';
 import { EmailNotVerified } from '../components/EmailNotVerified';
 
 export const EmailVerification = () => {
+  console.log('top of EmailVerification');
+
   const [isLoading, setIsLoading] = useState(true);
   const [isSuccess, setIsSuccess] = useState(false);
   const { VerificationString } = useParams();
   const [, setToken] = useToken();
 
   useEffect(() => {
+    console.log('top of useEffect');
+
     const loadVerification = async () => {
       try {
         const response = await axios.put(
@@ -22,7 +26,14 @@ export const EmailVerification = () => {
           }
         );
         const { token } = response.data;
+
+        console.log(`response = ${JSON.stringify(response)}`);
+        console.log(`token before set = ${token}`);
+
         setToken(token);
+
+        console.log(`token after set = ${token}`);
+
         setIsSuccess(true);
         setIsLoading(false);
       } catch (e) {
@@ -32,7 +43,11 @@ export const EmailVerification = () => {
     };
 
     loadVerification();
+
+    console.log('bottom of useEffect');
   }, [setToken, VerificationString]);
+
+  console.log('bottom of EmailVerification');
 
   if (isLoading) return <p>Loading...</p>;
   if (!isSuccess) return <EmailNotVerified />;
