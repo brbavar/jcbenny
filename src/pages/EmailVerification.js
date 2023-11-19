@@ -21,10 +21,7 @@ export const EmailVerification = () => {
             VerificationString,
           }
         );
-
-        console.log(`response = ${JSON.stringify(response)}`);
-
-        const { token } = response;
+        const { token } = response.data;
         setToken(token);
         setIsSuccess(true);
         setIsLoading(false);

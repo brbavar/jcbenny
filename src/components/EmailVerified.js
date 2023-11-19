@@ -12,7 +12,7 @@ export const EmailVerified = () => {
           selling, as the case may be.
         </p>
         <button onClick={() => navigate('/shop')}>Shop</button>
-        <button onClick={() => navigate('/sell-something')}>
+        <button onClick={() => navigate('/private/sell-something')}>
           Sell something
         </button>
       </div>
