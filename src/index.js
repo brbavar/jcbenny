@@ -16,34 +16,24 @@ import './index.css';
 
 import reportWebVitals from './reportWebVitals';
 
-const absolutify = (relativePath) => {
-  return `https://main--fascinating-melba-bd8f4d.netlify.app${relativePath}`;
-};
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path={absolutify('/private')} element={<Auth />}>
-          <Route
-            path={absolutify('/private/my-profile')}
-            element={<MyProfile />}
-          />
-          <Route
-            path={absolutify('/private/sell-something')}
-            element={<Sell />}
-          />
+        <Route path='/private' element={<Auth />}>
+          <Route path='/private/my-profile' element={<MyProfile />} />
+          <Route path='/private/sell-something' element={<Sell />} />
         </Route>
-        <Route path={absolutify('/')} element={<App />} />
-        <Route path={absolutify('/register')} element={<Register />} />
-        <Route path={absolutify('/please-verify')} element={<VerifyEmail />} />
+        <Route path='/' element={<App />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/please-verify' element={<VerifyEmail />} />
         <Route
-          path={absolutify('/verify-email/:VerificationString')}
+          path='/verify-email/:VerificationString'
           element={<EmailVerification />}
         />
-        <Route path={absolutify('/login')} element={<Login />} />
-        <Route path={absolutify('/shop')} element={<Catalog />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/shop' element={<Catalog />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
