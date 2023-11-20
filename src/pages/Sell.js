@@ -2,14 +2,17 @@ import { useState } from 'react';
 import { useUser } from '../lib/useUser';
 
 const onfulfilled = async (res) => {
+  const card = document.querySelector('#sell > .card');
+  const imgBox = card.querySelector('.img-box');
+
+  const prevImg = imgBox.querySelector('img');
+  if (prevImg) prevImg.remove();
+
   const img = document.createElement('img');
   img.height = 500;
   img.width = 500;
   img.src = await res.text();
 
-  const card = document.querySelector('#sell > .card');
-
-  const imgBox = card.querySelector('.img-box');
   imgBox.appendChild(img);
 
   const h2 = card.querySelector('h2');
