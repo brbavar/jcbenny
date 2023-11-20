@@ -7,8 +7,8 @@ const onfulfilled = async (res) => {
   img.width = 500;
   img.src = await res.text();
 
-  const sellBody = document.getElementById('sell');
-  sellBody.appendChild(img);
+  const imgBox = document.querySelector('#sell > .card > .img-box');
+  imgBox.appendChild(img);
 };
 
 const sendOpenAIPrompt = (e, description, email) => {
@@ -31,19 +31,22 @@ const Sell = () => {
 
   return (
     <body id='sell'>
-      <h2>What do you have to sell?</h2>
-      <input
-        value={description}
-        onChange={(e) => {
-          setDescription(e.target.value);
-        }}
-      />
-      <button
-        className='submit'
-        onClick={(e) => sendOpenAIPrompt(e, description, Email)}
-      >
-        Sell
-      </button>
+      <div className='card'>
+        <h2>What do you have to sell?</h2>
+        <input
+          value={description}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        />
+        <button
+          className='submit'
+          onClick={(e) => sendOpenAIPrompt(e, description, Email)}
+        >
+          Sell
+        </button>
+        <div className='img-box'></div>
+      </div>
     </body>
   );
 };

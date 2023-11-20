@@ -303,7 +303,8 @@ body#sell {
   background-position: center;
 }
 
-.card {
+body#login .card,
+body#register .card {
   background-color: white;
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.338);
   border-radius: 10px;
@@ -320,16 +321,16 @@ form {
   width: 350px;
 }
 
-#register form,
-#login form,
-#register form > div,
-#login form > div {
+body#register form,
+body#login form,
+body#register form > div,
+body#login form > div {
   display: flex;
   flex-direction: column;
 }
 
-#register form,
-#login form {
+body#register form,
+body#login form {
   gap: 3em;
 }
 
@@ -462,8 +463,23 @@ body#sell {
     rgba(55, 126, 139, 0.8),
     rgba(18, 248, 198, 0.8)
   );
+}
+
+body#sell .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: 30px;
+  background-color: rgba(55, 55, 55, 0.2);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+body#sell .img-box {
+  height: 500px;
+  width: 500px;
+  border: 1px dashed black;
 }
 
 body#sell h2 {
