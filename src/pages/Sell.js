@@ -16,14 +16,24 @@ const onfulfilled = async (res) => {
   imgBox.appendChild(img);
 
   const h2 = card.querySelector('h2');
-  h2.remove();
+  if (h2) {
+    h2.remove();
 
-  const input = card.querySelector('input');
+    const input = card.querySelector('input');
 
-  const h3 = document.createElement('h3');
-  h3.textContent =
-    'Does this resemble the item you had in mind? If not, that may work to your advantage, actually. You want to sell this thing, not accurately represent it to shoppers. But if, for any reason, you want to change the picture, feel free to send another text prompt. Even the one you sent previously will generate a new image if resent.';
-  card.insertBefore(h3, input);
+    const h3 = document.createElement('h3');
+    h3.textContent = 'Does this resemble the item you had in mind? If not, that may work to your advantage, actually. You want to sell this thing, not accurately represent it to shoppers. But if, for any reason, you want to change the picture, feel free to send another text prompt. Even the one you sent previously will generate a new image if resent.';
+    card.insertBefore(h3, input);
+    
+    btn = document.createElement('button');
+    btn.textContent = 'Stick with this';
+  }
+  
+  const putItemUpForSale = (img.src) => {
+    
+  };
+    
+  btn.addEventListener('onclick', 
 };
 
 const sendOpenAIPrompt = (e, description, email) => {
