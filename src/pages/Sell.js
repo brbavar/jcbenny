@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useUser } from '../lib/useUser';
 
-const onfulfilled = async (res) => {
+const onfulfilled = async (res, bodyObj) => {
   const card = document.querySelector('#sell > .card');
   const imgBox = card.querySelector('.img-box');
 
@@ -15,6 +15,10 @@ const onfulfilled = async (res) => {
 
   imgBox.appendChild(img);
 
+  let saleBtn = null;
+  let btns = card.querySelectorAll('button');
+  if (btns.length > 1) saleBtn = btns[1];
+
   const h2 = card.querySelector('h2');
   if (h2) {
     h2.remove();
@@ -22,29 +26,57 @@ const onfulfilled = async (res) => {
     const input = card.querySelector('input');
 
     const h3 = document.createElement('h3');
-    h3.textContent = 'Does this resemble the item you had in mind? If not, that may work to your advantage, actually. You want to sell this thing, not accurately represent it to shoppers. But if, for any reason, you want to change the picture, feel free to send another text prompt. Even the one you sent previously will generate a new image if resent.';
+    h3.textContent =
+      'Does this resemble the item you had in mind? If not, that may work to your advantage, actually. You want to sell this thing, not accurately represent it to shoppers. But if, for any reason, you want to change the picture, feel free to send another text prompt. Even the one you sent previously will generate a new image if resent.';
     card.insertBefore(h3, input);
-    
-    btn = document.createElement('button');
-    btn.textContent = 'Stick with this';
+
+    saleBtn = document.createElement('button');
+    saleBtn.textContent = 'Stick with this';
+    saleBtn.classList.add('submit');
+    card.insertBefore(saleBtn, imgBox);
+
+    const sendPromptBtn = btns[0];
+    sendPromptBtn.textContent = 'Try again';
   }
-  
-  const putItemUpForSale = (img.src) => {
-    
-  };
-    
-  btn.addEventListener('onclick', 
+
+  if (saleBtn) {
+    const putItemUpForSale = () => {
+      bodyObj.List.ImgURL = img.src;
+      fetch(
+        'https://weak-puce-toad-garb.cyclic.app/private/sell-something/save-pic',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(bodyObj),
+        }
+      )
+        .then((res) => {
+          res.text().then((text) => {
+            console.log(text);
+          });
+        })
+        .catch((error) => console.log(error));
+    };
+
+    saleBtn.addEventListener('onclick', putItemUpForSale);
+  }
 };
 
 const sendOpenAIPrompt = (e, description, email) => {
-  fetch('https://weak-puce-toad-garb.cyclic.app/private/sell-something', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ List: { Description: description }, Email: email }),
-  })
-    .then((res) => onfulfilled(res))
+  const bodyObj = { List: { Description: description }, Email: email };
+  fetch(
+    'https://weak-puce-toad-garb.cyclic.app/private/sell-something/make-pic',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyObj),
+    }
+  )
+    .then((res, bodyObj) => onfulfilled(res, bodyObj))
     .catch((error) => console.log(error));
 };
 
