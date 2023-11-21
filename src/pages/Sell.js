@@ -40,8 +40,34 @@ const onfulfilled = async (res, bodyObj) => {
   }
 
   if (saleBtn) {
-    const putItemUpForSale = () => {
+    // const putItemUpForSale = () => {
+    //   bodyObj.List.ImgURL = img.src;
+
+    //   console.log(`bodyObj.List.ImgURL = ${bodyObj.List.ImgURL}`);
+    //   fetch(
+    //     'https://weak-puce-toad-garb.cyclic.app/private/sell-something/save-pic',
+    //     {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify(bodyObj),
+    //     }
+    //   )
+    //     .then((res) => {
+    //       res.text().then((text) => {
+    //         console.log(text);
+    //       });
+    //     })
+    //     .catch((error) => console.log(error));
+    // };
+
+    // saleBtn.addEventListener('onclick', putItemUpForSale);
+    saleBtn.onClick = () => {
+      console.log('event handler invoked');
       bodyObj.List.ImgURL = img.src;
+
+      console.log(`bodyObj.List.ImgURL = ${bodyObj.List.ImgURL}`);
       fetch(
         'https://weak-puce-toad-garb.cyclic.app/private/sell-something/save-pic',
         {
@@ -59,9 +85,8 @@ const onfulfilled = async (res, bodyObj) => {
         })
         .catch((error) => console.log(error));
     };
-
-    saleBtn.addEventListener('onclick', putItemUpForSale);
   }
+  console.log(`saleBtn does ${saleBtn ? '' : 'not '}exist`);
 };
 
 const sendOpenAIPrompt = (e, description, email) => {
@@ -76,7 +101,7 @@ const sendOpenAIPrompt = (e, description, email) => {
       body: JSON.stringify(bodyObj),
     }
   )
-    .then((res, bodyObj) => onfulfilled(res, bodyObj))
+    .then((res) => onfulfilled(res, bodyObj))
     .catch((error) => console.log(error));
 };
 
