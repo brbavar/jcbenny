@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useUser } from '../lib/useUser';
 
-const onfulfilled = async (res, bodyObj) => {
+const onfulfilled = async (res) => {
   const card = document.querySelector('#sell > .card');
   const imgBox = card.querySelector('.img-box');
 
@@ -15,9 +15,9 @@ const onfulfilled = async (res, bodyObj) => {
 
   imgBox.appendChild(img);
 
-  let saleBtn = null;
   let btns = card.querySelectorAll('button');
-  if (btns.length > 1) saleBtn = btns[1];
+  const sendPromptBtn = btns[0];
+  const saleBtn = btns[1];
 
   const h2 = card.querySelector('h2');
   if (h2) {
@@ -30,67 +30,12 @@ const onfulfilled = async (res, bodyObj) => {
       'Does this resemble the item you had in mind? If not, that may work to your advantage, actually. You want to sell this thing, not accurately represent it to shoppers. But if, for any reason, you want to change the picture, feel free to send another text prompt. Even the one you sent previously will generate a new image if resent.';
     card.insertBefore(h3, input);
 
-    saleBtn = document.createElement('button');
-    saleBtn.textContent = 'Stick with this';
-    saleBtn.classList.add('submit');
-    card.insertBefore(saleBtn, imgBox);
-
-    const sendPromptBtn = btns[0];
     sendPromptBtn.textContent = 'Try again';
+    saleBtn.style.display = 'block';
   }
-
-  if (saleBtn) {
-    // const putItemUpForSale = () => {
-    //   bodyObj.List.ImgURL = img.src;
-
-    //   console.log(`bodyObj.List.ImgURL = ${bodyObj.List.ImgURL}`);
-    //   fetch(
-    //     'https://weak-puce-toad-garb.cyclic.app/private/sell-something/save-pic',
-    //     {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify(bodyObj),
-    //     }
-    //   )
-    //     .then((res) => {
-    //       res.text().then((text) => {
-    //         console.log(text);
-    //       });
-    //     })
-    //     .catch((error) => console.log(error));
-    // };
-
-    // saleBtn.addEventListener('onclick', putItemUpForSale);
-    saleBtn.onClick = () => {
-      console.log('event handler invoked');
-      bodyObj.List.ImgURL = img.src;
-
-      console.log(`bodyObj.List.ImgURL = ${bodyObj.List.ImgURL}`);
-      fetch(
-        'https://weak-puce-toad-garb.cyclic.app/private/sell-something/save-pic',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(bodyObj),
-        }
-      )
-        .then((res) => {
-          res.text().then((text) => {
-            console.log(text);
-          });
-        })
-        .catch((error) => console.log(error));
-    };
-  }
-  console.log(`saleBtn does ${saleBtn ? '' : 'not '}exist`);
 };
 
 const sendOpenAIPrompt = (e, description, email) => {
-  const bodyObj = { List: { Description: description }, Email: email };
   fetch(
     'https://weak-puce-toad-garb.cyclic.app/private/sell-something/make-pic',
     {
@@ -98,10 +43,36 @@ const sendOpenAIPrompt = (e, description, email) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(bodyObj),
+      body: JSON.stringify({
+        List: { Description: description },
+        Email: email,
+      }),
     }
   )
-    .then((res) => onfulfilled(res, bodyObj))
+    .then((res) => onfulfilled(res))
+    .catch((error) => console.log(error));
+};
+
+const putItemUpForSale = (e, description, email) => {
+  const img = document.querySelector('#sell > .card > .img-box > img');
+  fetch(
+    'https://weak-puce-toad-garb.cyclic.app/private/sell-something/save-pic',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        List: { Description: description, ImgURL: img.src },
+        Email: email,
+      }),
+    }
+  )
+    .then((res) => {
+      res.text().then((text) => {
+        console.log(text);
+      });
+    })
     .catch((error) => console.log(error));
 };
 
@@ -126,6 +97,13 @@ const Sell = () => {
           onClick={(e) => sendOpenAIPrompt(e, description, Email)}
         >
           Sell
+        </button>
+        <button
+          style={{ display: 'none' }}
+          className='submit'
+          onClick={(e) => putItemUpForSale(e, description, Email)}
+        >
+          Stick with this
         </button>
         <div className='img-box'></div>
       </div>
