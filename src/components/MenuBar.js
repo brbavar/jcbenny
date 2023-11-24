@@ -1,8 +1,27 @@
 import { useRef, forwardRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import LogoSrc from '../images/JCBenny.png';
 
 const Overlay = forwardRef((props, ref) => {
   return <div id='overlay' ref={ref}></div>;
 });
+
+const Logo = () => {
+  const navigate = useNavigate();
+
+  return (
+    <img
+      id='jcb-logo'
+      height='30px'
+      width='auto'
+      src={LogoSrc}
+      alt=''
+      onClick={() => {
+        navigate('/');
+      }}
+    />
+  );
+};
 
 const MenuIcon = (props) => {
   const [xified, setXified] = useState(false);
@@ -63,6 +82,7 @@ const MenuBar = (props) => {
   return (
     <div id='menu-bar'>
       <Overlay ref={overlayRef} />
+      <Logo />
       <MenuIcon
         menuRef={props.menuRef}
         overlayRef={overlayRef}

@@ -11,7 +11,6 @@ const Catalog = () => {
   useEffect(() => {
     document.title = 'Catalog';
   });
-
   const menuRef = useRef(null);
 
   const items = [];

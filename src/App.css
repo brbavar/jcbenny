@@ -1,9 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Montserrat&Old+Standard+TT&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Poppins;
+  font-weight: 900;
+}
+
+p,
+input {
+  font-family: 'Old Standard TT';
+}
+
+.container {
+  margin-left: 3em;
+}
 
 /* HOMEPAGE STYLES BELOW */
 
 body * {
-  font-family: Arvo;
   color: black;
 }
 
@@ -39,13 +59,23 @@ html {
   z-index: 0;
 }
 
+#jcb-logo {
+  position: absolute;
+  left: 30px;
+  top: 27px;
+}
+
+#jcb-logo:hover {
+  cursor: pointer;
+}
+
 #menu-icon {
   display: inline-block;
   cursor: pointer;
   transform: scale(0.5);
   position: absolute;
   right: 30px;
-  top: 10px;
+  top: 15px;
 }
 
 #menu-icon > div {
@@ -157,12 +187,14 @@ html {
 #menu.shown > * {
   animation: opacifyUp 0.25s;
   opacity: 1;
+  display: block;
   transform: translateY(-5px);
 }
 
 #menu.hidden > * {
   animation: invisifyDown 0.25s;
   opacity: 0;
+  display: none;
 }
 
 @keyframes opacifyUp {
@@ -234,10 +266,12 @@ html {
 
 #menu div {
   opacity: 0;
+  display: none;
 }
 
 #menu a {
   text-decoration: none;
+  font-family: Poppins;
   pointer-events: none;
 }
 
@@ -266,6 +300,12 @@ button {
     transform 0.4s ease-out, box-shadow 0.2s ease-out;
 }
 
+button,
+input.submit {
+  font-family: Poppins;
+  font-weight: 600;
+}
+
 button:hover {
   color: white;
   background-color: black;
@@ -289,6 +329,11 @@ body#register,
 body#found,
 body#sell {
   height: 100vh;
+}
+
+body#login,
+body#register,
+body#found {
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -306,7 +351,6 @@ body#sell {
 body#login .card,
 body#register .card {
   background-color: white;
-  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.338);
   border-radius: 10px;
   height: 600px;
   width: 350px;
@@ -314,6 +358,10 @@ body#register .card {
   padding-bottom: 20px;
   padding-left: 35px;
   padding-right: 43px;
+}
+
+.card {
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.338);
 }
 
 form {
@@ -451,39 +499,92 @@ h1 {
 
 /* Styles for profile below */
 
+#profile .container {
+  padding-top: 30px;
+}
+
 #profile .profile-pic {
   border-radius: 50%;
 }
 
 /* Styles for Sell.js below */
 
-body#sell {
+/* body#sell {
   background-image: linear-gradient(
     60deg,
-    rgba(55, 126, 139, 0.8),
-    rgba(18, 248, 198, 0.8)
+    rgba(11, 203, 237, 0.8),
+    rgba(22, 218, 175, 0.8)
   );
-}
+} */
 
-body#sell .card {
+/* body#sell .card {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 30px;
-  background-color: rgba(55, 55, 55, 0.2);
+  background-color: rgba(158, 216, 13, 0.3);
   padding: 30px;
   border-radius: 20px;
+  max-height: 80vh;
+} */
+
+body#sell {
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px; */
+  /* background-color: rgba(158, 216, 13, 0.3); */
+  /* padding: 30px; */
+  max-height: 100vh;
 }
+
+body#sell input {
+  /* all: unset; */
+  color: rgba(235, 235, 179, 0.3);
+  padding-left: 0.2em;
+}
+
+body#sell select {
+  color: rgb(235, 235, 179);
+}
+
+body#sell input,
+body#sell select {
+  border: 2px solid rgba(4, 4, 94, 0.3);
+  background-color: rgba(2, 2, 84, 0.5);
+  height: 40px;
+  font-size: 1em;
+}
+
+body#sell .btn-box {
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+}
+
+/* body#sell .btn-box > button {
+  max-width: 350px;
+} */
 
 body#sell .img-box {
-  height: 500px;
-  width: 500px;
-  border: 1px dashed black;
+  height: 200px;
+  width: 200px;
+  /* border: 1px dashed black; */
 }
 
-body#sell h2 {
+body#sell .img-box > img {
+  box-shadow: 2px 4px 10px black;
+}
+
+body#sell h2,
+h4 {
   margin-bottom: 0;
+}
+
+body#sell h4 {
+  max-width: 600px;
 }
 
 @media (pointer: none), (pointer: coarse) {
@@ -521,5 +622,17 @@ body#sell h2 {
     height: 50px;
     width: 175px;
     transform: translateX(-35px);
+  }
+}
+
+@media (min-width: 780px) {
+  body#sell {
+    overflow: hidden;
+  }
+
+  body#sell .btn-box {
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
   }
 }
