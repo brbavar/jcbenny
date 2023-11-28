@@ -8,7 +8,7 @@ import Placeholder from '../images/Portrait_Placeholder.png';
 
 const MyProfile = () => {
   useEffect(() => {
-    document.title = ``;
+    document.title = ` | JCBenny`;
   });
   const menuRef = useRef(null);
 

@@ -8,7 +8,7 @@ import onsubmitHandler from '../lib/onSubmitHandler';
 
 const Login = () => {
   useEffect(() => {
-    document.title = 'Sign in';
+    document.title = 'Sign in | JCBenny';
   });
 
   const [svgPath, setSVGPath] = useState(eyeOpen);

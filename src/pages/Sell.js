@@ -113,7 +113,7 @@ const putItemUpForSale = (e, description, email) => {
 
 const Sell = () => {
   useEffect(() => {
-    document.title = 'Sell something';
+    document.title = 'Sell something | JCBenny';
   });
   const menuRef = useRef(null);
 

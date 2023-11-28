@@ -9,7 +9,7 @@ import Item from '../components/Item';
 
 const Catalog = () => {
   useEffect(() => {
-    document.title = 'Catalog';
+    document.title = 'Catalog | JCBenny';
   });
   const menuRef = useRef(null);
 
