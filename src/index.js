@@ -8,7 +8,7 @@ import Register from './pages/Register';
 import { VerifyEmail } from './pages/VerifyEmail';
 import { EmailVerification } from './pages/EmailVerification';
 import Login from './pages/Login';
-import MyProfile from './pages/MyProfile';
+import Profile from './pages/Profile';
 import Catalog from './pages/Catalog';
 import Sell from './pages/Sell';
 
@@ -22,7 +22,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path='/private' element={<Auth />}>
-          <Route path='/private/my-profile' element={<MyProfile />} />
+          {/* <Route path='/private/profile' element={<Profile />} /> */}
           <Route path='/private/sell-something' element={<Sell />} />
         </Route>
         <Route path='/' element={<App />} />
