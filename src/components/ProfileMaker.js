@@ -22,6 +22,7 @@ export const ProfileMaker = async () => {
 
       if (nameDups.has(fullName))
         updatedNameDups.set(fullName, nameDups.get(fullName) + 1);
+      else updatedNameDups.set(fullName, 1);
 
       setNameDups(updatedNameDups);
     }
@@ -31,6 +32,8 @@ export const ProfileMaker = async () => {
     let nameInPath = name.toLowerCase();
     for (let i = 0; i < nameInPath.length; i++)
       if (nameInPath[i] === ' ') nameInPath[i] = '-';
+
+    if (nameDups.get(name) > 1) nameInPath += `-${crypto.randomUUID()}`;
 
     setProfileRoutes([
       ...profileRoutes,
