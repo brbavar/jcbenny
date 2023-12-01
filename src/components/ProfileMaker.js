@@ -1,17 +1,11 @@
-import { Route } from 'react-router-dom';
+import { Route, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 
 import Profile from '../pages/Profile';
+let profileRoutes, setProfileRoutes;
 
-export const ProfileMaker = async () => {
-  const [nameDups, setNameDups] = useState(new Map());
-  const [profileRoutes, setProfileRoutes] = useState([]);
-
-  const res = await axios.get(
-    'https://weak-puce-toad-garb.cyclic.app/names-of-users'
-  );
-
+const onfulfilled = (res, nameDups, setNameDups) => {
   if (res.Count) {
     let updatedNameDups = new Map();
     for (let name of nameDups.keys())
@@ -37,9 +31,23 @@ export const ProfileMaker = async () => {
 
     setProfileRoutes([
       ...profileRoutes,
-      <Route path={`/${nameInPath}`} element={<Profile nameOfUser={name} />} />,
+      <Route
+        path={`/profile/${nameInPath}`}
+        element={<Profile nameOfUser={name} />}
+      />,
     ]);
   }
-
-  return profileRoutes;
 };
+
+const ProfileMaker = () => {
+  const [nameDups, setNameDups] = useState(new Map());
+  [profileRoutes, setProfileRoutes] = useState([]);
+
+  axios
+    .get('https://weak-puce-toad-garb.cyclic.app/names-of-users')
+    .then((res) => onfulfilled(res, nameDups, setNameDups));
+
+  return <Outlet />;
+};
+
+export { ProfileMaker, profileRoutes };
