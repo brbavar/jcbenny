@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useUser } from '../lib/useUser';
 
-export const Auth = (/*props*/) => {
+export const Auth = () => {
   const user = useUser();
 
   if (!user) return <Navigate to='/login' />;
@@ -9,5 +9,4 @@ export const Auth = (/*props*/) => {
   console.log(`Made it to end of Auth. user = ${JSON.stringify(user)}`);
 
   return <Outlet />;
-  // return <Route {...props} />;
 };

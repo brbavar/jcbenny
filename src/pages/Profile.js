@@ -6,9 +6,9 @@ import Menu from '../components/Menu';
 
 import Placeholder from '../images/Portrait_Placeholder.png';
 
-const Profile = () => {
+const Profile = (props) => {
   useEffect(() => {
-    document.title = ` | JCBenny`;
+    document.title = `${props.nameOfUser} | JCBenny`;
   });
   const menuRef = useRef(null);
 
@@ -31,6 +31,7 @@ const Profile = () => {
           height='300px'
           width='auto'
         />
+        <h1>{props.nameOfUser}</h1>
         <br />
         <br />
         <button onClick={logOut}>Log out</button>

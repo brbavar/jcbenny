@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import { Auth } from './components/Auth';
 import Register from './pages/Register';
+import { ProfileMaker } from './components/ProfileMaker';
 import { VerifyEmail } from './pages/VerifyEmail';
 import { EmailVerification } from './pages/EmailVerification';
 import Login from './pages/Login';
@@ -27,6 +28,7 @@ root.render(
         </Route>
         <Route path='/' element={<App />} />
         <Route path='/register' element={<Register />} />
+        <ProfileMaker />
         <Route path='/please-verify' element={<VerifyEmail />} />
         <Route
           path='/verify-email/:VerificationString'
