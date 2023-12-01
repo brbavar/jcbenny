@@ -12,19 +12,20 @@ export const ProfileMaker = async () => {
     'https://weak-puce-toad-garb.cyclic.app/names-of-users'
   );
 
-  if (res.Count)
+  if (res.Count) {
+    let updatedNameDups = new Map();
+    for (let name of nameDups.keys())
+      updatedNameDups.set(name, nameDups.get(name));
+
     for (let item of res.Items) {
       const fullName = `${item['First name']} ${item['Last name']}`;
-
-      let updatedNameDups = new Map();
-      for (let name of nameDups.keys())
-        updatedNameDups.set(name, nameDups.get(name));
 
       if (nameDups.has(fullName))
         updatedNameDups.set(fullName, nameDups.get(fullName) + 1);
 
       setNameDups(updatedNameDups);
     }
+  }
 
   for (let name of nameDups.keys()) {
     let nameInPath = name.toLowerCase();
