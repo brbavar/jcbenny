@@ -5,24 +5,34 @@ import axios from 'axios';
 import Profile from '../pages/Profile';
 let profileRoutes, setProfileRoutes;
 
-const onfulfilled = (res, nameDups, setNameDups) => {
-  if (res.Count) {
-    let updatedNameDups = new Map();
-    for (let name of nameDups.keys())
-      updatedNameDups.set(name, nameDups.get(name));
+const onfulfilled = (res, nameDupArr, profileRouteArr) => {
+  const [nameDups, setNameDups] = nameDupArr;
+  let [profileRoutes, setProfileRoutes] = profileRouteArr;
 
-    for (let item of res.Items) {
+  if (res.data.Count) {
+    let updatedNameDups = new Map();
+    if (nameDups.size)
+      for (let [name] of nameDups) {
+        //   console.log(`name = ${name}`);
+        updatedNameDups.set(name, nameDups.get(name));
+      }
+
+    for (let item of res.data.Items) {
       const fullName = `${item['First name']} ${item['Last name']}`;
 
-      if (nameDups.has(fullName))
-        updatedNameDups.set(fullName, nameDups.get(fullName) + 1);
+      //   console.log(`fullName = ${fullName}`);
+
+      if (updatedNameDups.has(fullName))
+        updatedNameDups.set(fullName, updatedNameDups.get(fullName) + 1);
+      // This line causes the "read-only" error
       else updatedNameDups.set(fullName, 1);
 
       setNameDups(updatedNameDups);
     }
   }
 
-  for (let name of nameDups.keys()) {
+  for (let [name] of nameDups) {
+    // console.log(`name = ${name}`);
     let nameInPath = name.toLowerCase();
     for (let i = 0; i < nameInPath.length; i++)
       if (nameInPath[i] === ' ') nameInPath[i] = '-';
@@ -40,12 +50,17 @@ const onfulfilled = (res, nameDups, setNameDups) => {
 };
 
 const ProfileMaker = () => {
+  console.log('top of ProfileMaker');
+
   const [nameDups, setNameDups] = useState(new Map());
   [profileRoutes, setProfileRoutes] = useState([]);
+  const nameDupArr = [nameDups, setNameDups];
+  const profileRouteArr = [profileRoutes, setProfileRoutes];
 
   axios
     .get('https://weak-puce-toad-garb.cyclic.app/names-of-users')
-    .then((res) => onfulfilled(res, nameDups, setNameDups));
+    .then((res) => onfulfilled(res, nameDupArr, profileRouteArr))
+    .catch((error) => console.log(error));
 
   return <Outlet />;
 };
