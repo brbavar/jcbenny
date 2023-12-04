@@ -11,42 +11,46 @@ const onfulfilled = (res, nameDupArr, profileRouteArr) => {
 
   if (res.data.Count) {
     let updatedNameDups = new Map();
-    if (nameDups.size)
-      for (let [name] of nameDups) {
-        //   console.log(`name = ${name}`);
-        updatedNameDups.set(name, nameDups.get(name));
-      }
+    console.log(`nameDups.size = ${nameDups.size}`);
+    // if (nameDups.size)
+    //   for (let [name] of nameDups) {
+    //     //   console.log(`name = ${name}`);
+    //     updatedNameDups.set(name, nameDups.get(name));
+    //   }
 
+    // console.log(`res.data.Items.length = ${res.data.Items.length}`);
+    let i = 1;
     for (let item of res.data.Items) {
       const fullName = `${item['First name']} ${item['Last name']}`;
 
-      //   console.log(`fullName = ${fullName}`);
+      console.log(`${i++}: fullName = ${fullName}`);
 
       if (updatedNameDups.has(fullName))
         updatedNameDups.set(fullName, updatedNameDups.get(fullName) + 1);
-      // This line causes the "read-only" error
       else updatedNameDups.set(fullName, 1);
 
-      setNameDups(updatedNameDups);
+      setNameDups(updatedNameDups); // This line causes all the issues
+
+      // console.log(`nameDups.size = ${nameDups.size}`);
     }
   }
 
-  for (let [name] of nameDups) {
-    // console.log(`name = ${name}`);
-    let nameInPath = name.toLowerCase();
-    for (let i = 0; i < nameInPath.length; i++)
-      if (nameInPath[i] === ' ') nameInPath[i] = '-';
+  // for (let [name] of nameDups) {
+  //   // console.log(`name = ${name}`);
+  //   let nameInPath = name.toLowerCase();
+  //   for (let i = 0; i < nameInPath.length; i++)
+  //     if (nameInPath[i] === ' ') nameInPath[i] = '-';
 
-    if (nameDups.get(name) > 1) nameInPath += `-${crypto.randomUUID()}`;
+  //   if (nameDups.get(name) > 1) nameInPath += `-${crypto.randomUUID()}`;
 
-    setProfileRoutes([
-      ...profileRoutes,
-      <Route
-        path={`/profile/${nameInPath}`}
-        element={<Profile nameOfUser={name} />}
-      />,
-    ]);
-  }
+  //   setProfileRoutes([
+  //     ...profileRoutes,
+  //     <Route
+  //       path={`/profile/${nameInPath}`}
+  //       element={<Profile nameOfUser={name} />}
+  //     />,
+  //   ]);
+  // }
 };
 
 const ProfileMaker = () => {
