@@ -5,18 +5,24 @@ import axios from 'axios';
 import Profile from '../pages/Profile';
 let profileRoutes, setProfileRoutes;
 
-const onfulfilled = (res, nameDupArr, profileRouteArr) => {
-  const [nameDups, setNameDups] = nameDupArr;
-  let [profileRoutes, setProfileRoutes] = profileRouteArr;
+const onfulfilled = (
+  res,
+  nameDups,
+  setNameDups,
+  profileRoutes,
+  setProfileRoutes /*nameDupArr, profileRouteArr*/
+) => {
+  // const [nameDups, setNameDups] = nameDupArr;
+  // let [profileRoutes, setProfileRoutes] = profileRouteArr;
 
   if (res.data.Count) {
     let updatedNameDups = new Map();
     console.log(`nameDups.size = ${nameDups.size}`);
-    // if (nameDups.size)
-    //   for (let [name] of nameDups) {
-    //     //   console.log(`name = ${name}`);
-    //     updatedNameDups.set(name, nameDups.get(name));
-    //   }
+    if (nameDups.size)
+      for (let [name] of nameDups) {
+        //   console.log(`name = ${name}`);
+        updatedNameDups.set(name, nameDups.get(name));
+      }
 
     // console.log(`res.data.Items.length = ${res.data.Items.length}`);
     let i = 1;
@@ -25,14 +31,29 @@ const onfulfilled = (res, nameDupArr, profileRouteArr) => {
 
       console.log(`${i++}: fullName = ${fullName}`);
 
-      if (updatedNameDups.has(fullName))
-        updatedNameDups.set(fullName, updatedNameDups.get(fullName) + 1);
-      else updatedNameDups.set(fullName, 1);
+      if (nameDups.has(fullName)) {
+        console.log('nameDups.has(fullName) returns true');
+        console.log(`nameDups.get(fullName) = ${nameDups.get(fullName)}`);
+        updatedNameDups.set(fullName, nameDups.get(fullName) + 1);
+        console.log(
+          `updatedNameDups.get(fullName) = ${updatedNameDups.get(fullName)}`
+        );
+      } else updatedNameDups.set(fullName, 1);
 
-      setNameDups(updatedNameDups); // This line causes all the issues
+      // setNameDups(updatedNameDups); // This line causes all the issues
 
       // console.log(`nameDups.size = ${nameDups.size}`);
     }
+
+    // console.log('AT END OF onfulfilled');
+    // for (let [name] of updatedNameDups) {
+    //   console.log(`name = ${name}`);
+    //   console.log(`updatedNameDups.get(name) = ${updatedNameDups.get(name)}`);
+    // }
+
+    // for (let [name] of updatedNameDups)
+    //   nameDups.set(name, updatedNameDups.get(name));
+    setNameDups(updatedNameDups);
   }
 
   // for (let [name] of nameDups) {
@@ -58,13 +79,20 @@ const ProfileMaker = () => {
 
   const [nameDups, setNameDups] = useState(new Map());
   [profileRoutes, setProfileRoutes] = useState([]);
-  const nameDupArr = [nameDups, setNameDups];
-  const profileRouteArr = [profileRoutes, setProfileRoutes];
+  // const nameDupArr = [nameDups, setNameDups];
+  // const profileRouteArr = [profileRoutes, setProfileRoutes];
 
-  axios
-    .get('https://weak-puce-toad-garb.cyclic.app/names-of-users')
-    .then((res) => onfulfilled(res, nameDupArr, profileRouteArr))
-    .catch((error) => console.log(error));
+  axios.get('https://weak-puce-toad-garb.cyclic.app/names-of-users').then(
+    (res) =>
+      onfulfilled(
+        res,
+        nameDups,
+        setNameDups,
+        profileRoutes,
+        setProfileRoutes /*nameDupArr, profileRouteArr*/
+      ),
+    (error) => console.log(error)
+  );
 
   return <Outlet />;
 };
