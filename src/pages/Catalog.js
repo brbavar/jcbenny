@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 
-import MenuBar from '../components/MenuBar';
-import Menu from '../components/Menu';
+import MenuBar from '../components/MenuBar.js';
+import Menu from '../components/Menu.js';
 
-import Item from '../components/Item';
+import Item from '../components/Item.js';
 // import KatherinRogersImg from '../images/katherin-rogers.jpeg';
 // import PortraitPlaceholder from '../images/Portrait_Placeholder.png';
 

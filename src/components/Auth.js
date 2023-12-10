@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useUser } from '../lib/useUser';
+import { useUser } from '../lib/useUser.js';
 
 export const Auth = () => {
   const user = useUser();
