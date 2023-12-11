@@ -7,7 +7,7 @@ import { Auth } from './components/Auth.js';
 import Register from './pages/Register.js';
 import {
   ProfileMaker,
-  profileRoutesPromise,
+  profileRoutes /*Promise*/,
 } from './components/ProfileMaker.js';
 import { VerifyEmail } from './pages/VerifyEmail.js';
 import { EmailVerification } from './pages/EmailVerification.js';
@@ -25,39 +25,69 @@ import reportWebVitals from './reportWebVitals';
 // })();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-profileRoutesPromise.then((profileRoutes) => {
-  console.log('inside then');
-  root.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/private' element={<Auth />}>
-            {/* <Route path='/private/profile' element={<Profile />} /> */}
-            <Route path='/private/sell-something' element={<Sell />} />
-          </Route>
-          <Route path='/' element={<App />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/profile' element={<ProfileMaker />}>
-            {profileRoutes}
-          </Route>
-          <Route path='/please-verify' element={<VerifyEmail />} />
-          <Route
-            path='/verify-email/:VerificationString'
-            element={<EmailVerification />}
-          />
-          <Route path='/login' element={<Login />} />
-          <Route path='/shop' element={<Catalog />} />
-        </Routes>
-      </BrowserRouter>
-      <button
-        onClick={() => {
-          console.log(profileRoutes.length);
-          // for (let route of profileRoutes) console.log(route);
-        }}
-      ></button>
-    </React.StrictMode>
-  );
-});
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/private' element={<Auth />}>
+          {/* <Route path='/private/profile' element={<Profile />} /> */}
+          <Route path='/private/sell-something' element={<Sell />} />
+        </Route>
+        <Route path='/' element={<App />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/profile' element={<ProfileMaker />}>
+          {profileRoutes}
+        </Route>
+        <Route path='/please-verify' element={<VerifyEmail />} />
+        <Route
+          path='/verify-email/:VerificationString'
+          element={<EmailVerification />}
+        />
+        <Route path='/login' element={<Login />} />
+        <Route path='/shop' element={<Catalog />} />
+      </Routes>
+    </BrowserRouter>
+    <button
+      onClick={() => {
+        console.log(profileRoutes.length);
+        for (let route of profileRoutes) console.log(route);
+      }}
+    ></button>
+  </React.StrictMode>
+);
+// profileRoutesPromise.then((profileRoutes) => {
+//   console.log('inside then');
+//   root.render(
+//     <React.StrictMode>
+//       <BrowserRouter>
+//         <Routes>
+//           <Route path='/private' element={<Auth />}>
+//             {/* <Route path='/private/profile' element={<Profile />} /> */}
+//             <Route path='/private/sell-something' element={<Sell />} />
+//           </Route>
+//           <Route path='/' element={<App />} />
+//           <Route path='/register' element={<Register />} />
+//           <Route path='/profile' element={<ProfileMaker />}>
+//             {profileRoutes}
+//           </Route>
+//           <Route path='/please-verify' element={<VerifyEmail />} />
+//           <Route
+//             path='/verify-email/:VerificationString'
+//             element={<EmailVerification />}
+//           />
+//           <Route path='/login' element={<Login />} />
+//           <Route path='/shop' element={<Catalog />} />
+//         </Routes>
+//       </BrowserRouter>
+//       <button
+//         onClick={() => {
+//           console.log(profileRoutes.length);
+//           // for (let route of profileRoutes) console.log(route);
+//         }}
+//       ></button>
+//     </React.StrictMode>
+//   );
+// });
 
 // root.render(
 //   <button

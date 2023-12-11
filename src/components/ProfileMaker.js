@@ -2,6 +2,7 @@ import { Route, Outlet } from 'react-router-dom';
 import axios from 'axios';
 
 import Profile from '../pages/Profile.js';
+let profileRoutes = [];
 
 const onfulfilled = async (res) => {
   const nameDups = new Map();
@@ -14,7 +15,7 @@ const onfulfilled = async (res) => {
     }
   }
 
-  const profileRoutes = [];
+  // const profileRoutes = [];
   for (let [name] of nameDups) {
     let nameInPath = name.toLowerCase();
     nameInPath = nameInPath.replaceAll(' ', '-');
@@ -31,24 +32,33 @@ const onfulfilled = async (res) => {
     );
   }
 
-  return profileRoutes;
+  // return profileRoutes;
 };
 
-let profileRoutesPromise = new Promise(
-  () => console.log('promise resolved'),
+// let profileRoutesPromise = new Promise(
+//   () => console.log('promise resolved'),
+//   (error) => console.log(error)
+// );
+
+axios.get('https://weak-puce-toad-garb.cyclic.app/names-of-users').then(
+  (res) => {
+    console.log('inside get');
+    onfulfilled(res);
+    // profileRoutesPromise = onfulfilled(res);
+  },
   (error) => console.log(error)
 );
 
 const ProfileMaker = () => {
-  axios.get('https://weak-puce-toad-garb.cyclic.app/names-of-users').then(
-    (res) => {
-      console.log('inside get');
-      profileRoutesPromise = onfulfilled(res);
-    },
-    (error) => console.log(error)
-  );
+  // axios.get('https://weak-puce-toad-garb.cyclic.app/names-of-users').then(
+  //   (res) => {
+  //     console.log('inside get');
+  //     profileRoutesPromise = onfulfilled(res);
+  //   },
+  //   (error) => console.log(error)
+  // );
 
   return <Outlet />;
 };
 
-export { ProfileMaker, profileRoutesPromise };
+export { ProfileMaker, profileRoutes /*Promise*/ };
