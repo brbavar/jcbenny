@@ -12,7 +12,7 @@ import {
 import { VerifyEmail } from './pages/VerifyEmail.js';
 import { EmailVerification } from './pages/EmailVerification.js';
 import Login from './pages/Login.js';
-import Profile from './pages/Profile.js';
+// import Profile from './pages/Profile.js';
 import Catalog from './pages/Catalog.js';
 import Sell from './pages/Sell.js';
 

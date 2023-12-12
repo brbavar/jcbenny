@@ -88,7 +88,7 @@ const setItemAvailability = (e, setPotentialBuyers) => {
   container.insertBefore(newBreak, breaks[3]);
 };
 
-const putItemUpForSale = (e, description, email) => {
+const putItemUpForSale = (e, description, potentialBuyers, email) => {
   const img = document.querySelector('#sell .img-box > img');
   fetch(
     'https://weak-puce-toad-garb.cyclic.app/private/sell-something/save-pic',
@@ -98,7 +98,11 @@ const putItemUpForSale = (e, description, email) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        List: { Description: description, ImgURL: img.src },
+        List: {
+          Description: description,
+          PotentialBuyers: potentialBuyers,
+          ImgURL: img.src,
+        },
         Email: email,
       }),
     }
@@ -173,7 +177,9 @@ const Sell = () => {
           <button
             style={{ display: 'none' }}
             className='submit'
-            onClick={(e) => putItemUpForSale(e, description, Email)}
+            onClick={(e) =>
+              putItemUpForSale(e, description, potentialBuyers, Email)
+            }
           >
             Stick with this
           </button>
