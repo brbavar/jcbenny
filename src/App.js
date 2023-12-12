@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   useEffect(() => {
-    document.title = 'Home';
+    document.title = 'Home | JCBenny';
   });
 
   return <Home />;
