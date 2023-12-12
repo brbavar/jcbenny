@@ -49,8 +49,8 @@ root.render(
     </BrowserRouter>
     <button
       onClick={() => {
-        console.log(profileRoutes.length);
-        for (let route of profileRoutes) console.log(route);
+        alert(`length = ${profileRoutes.length}`);
+        for (let route of profileRoutes) alert(route);
       }}
     ></button>
   </React.StrictMode>
