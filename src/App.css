@@ -626,9 +626,9 @@ body#sell h4 {
 }
 
 @media (min-width: 780px) {
-  body#sell {
+  /* body#sell {
     overflow: hidden;
-  }
+  } */
 
   body#sell .btn-box {
     display: flex;

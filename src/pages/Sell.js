@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useUser } from '../lib/useUser';
+import { nameDups } from '../lib/getNameDups';
 
 import MenuBar from '../components/MenuBar';
 import Menu from '../components/Menu';
@@ -64,8 +65,78 @@ const sendOpenAIPrompt = (e, description, email) => {
     .catch((error) => console.log(error));
 };
 
-const setItemAvailability = (e, setPotentialBuyers) => {
+const makeNameCheckboxes = (container) => {
+  const breaks = container.querySelectorAll('br');
+  const form = document.createElement('form');
+  form.classList.add('checkboxes');
+  container.insertBefore(form, breaks[1]);
+
+  for (let [name] of nameDups) {
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+
+    let nameInPath = name.toLowerCase();
+    nameInPath = nameInPath.replaceAll(' ', '-');
+    input.id = nameInPath;
+
+    const label = document.createElement('label');
+    label.textContent = name;
+    label.htmlFor = input.id;
+
+    const newBreak = document.createElement('br');
+    [newBreak, input, label].forEach((node) => form.appendChild(node));
+
+    if (nameDups[name] > 1) input.id += ''; // Append to id if there are dups of name
+  }
+};
+
+const handleOfferToSomeoneSpecial = () => {
+  const container = document.querySelector('.container');
+
+  const h4 = container.querySelector('h4');
+  h4.textContent =
+    "Oooo, who's this special someone? Or should I say special someones, plural?";
+
+  const imgBox = container.querySelector('.img-box');
+  if (imgBox) {
+    imgBox.style.transform = 'scale(0)';
+    imgBox.animate(
+      [{ transform: 'scale(1)' }, { transform: 'scale(0)' }],
+      1500
+    );
+
+    setTimeout(() => {
+      imgBox.remove();
+
+      makeNameCheckboxes(container);
+    }, 1500);
+  } else makeNameCheckboxes(container);
+};
+
+const handleOfferToAnyone = () => {
+  const checkboxes = document.querySelector('.checkboxes');
+  if (checkboxes) checkboxes.remove();
+
   const h4 = document.querySelector('h4');
+  h4.textContent =
+    "Haven't met that special someone yet, eh? Whatever, let's see who'll buy this thing.";
+};
+
+const handleSelection = (e) => {
+  const offerToSomeoneSpecial = e.target.children[1];
+
+  if (offerToSomeoneSpecial.selected) handleOfferToSomeoneSpecial();
+  else handleOfferToAnyone();
+
+  const container = document.querySelector('.container');
+  const sellBtn = container.querySelector('button');
+  sellBtn.style.display = 'block';
+};
+
+const askItemAvailability = () => {
+  const container = document.querySelector('.container');
+
+  const h4 = container.querySelector('h4');
   h4.textContent = 'To whom would you like to offer this?';
 
   const select = document.createElement('select');
@@ -77,15 +148,20 @@ const setItemAvailability = (e, setPotentialBuyers) => {
   options[0].selected = true;
   options[1].textContent = 'Someone special';
   options.forEach((option) => select.appendChild(option));
+  select.onchange = (e) => handleSelection(e);
 
-  const container = document.querySelector('.container');
+  const descriptionField = document.getElementById('description-field');
+  descriptionField.remove();
+
   const breaks = document.querySelectorAll('br');
-  const btnBox = document.querySelector('.btn-box');
-  btnBox.remove();
+  const btns = container.querySelectorAll('button');
+  btns[0].remove();
+  btns[1].remove();
   container.insertBefore(select, breaks[3]);
 
   const newBreak = document.createElement('br');
   container.insertBefore(newBreak, breaks[3]);
+  for (let i = 0; i < 3; i++) breaks[i].remove();
 };
 
 const putItemUpForSale = (e, description, potentialBuyers, email) => {
@@ -127,7 +203,7 @@ const Sell = () => {
   const [description, setDescription] = useState('Item description');
   const [changed, setChanged] = useState(false);
   const [reverted, setReverted] = useState(false);
-  const [potentialBuyers, setPotentialBuyers] = useState('');
+  const [potentialBuyers, setPotentialBuyers] = useState([]);
 
   return (
     <body id='sell'>
@@ -138,6 +214,7 @@ const Sell = () => {
         <h2>What do you have to sell?</h2>
         <br />
         <input
+          id='description-field'
           value={description}
           onChange={(e) => {
             setDescription(e.target.value);
@@ -165,12 +242,12 @@ const Sell = () => {
             className='submit'
             onClick={(e) => sendOpenAIPrompt(e, description, Email)}
           >
-            Sell
+            Make ad
           </button>
           <button
             style={{ display: 'none' }}
             className='submit'
-            onClick={(e) => setItemAvailability(e, setPotentialBuyers)}
+            onClick={askItemAvailability}
           >
             Stick with this
           </button>
@@ -181,7 +258,7 @@ const Sell = () => {
               putItemUpForSale(e, description, potentialBuyers, Email)
             }
           >
-            Stick with this
+            Sell
           </button>
         </div>
         <br />
