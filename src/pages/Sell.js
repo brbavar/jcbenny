@@ -75,9 +75,9 @@ const makeNameCheckboxes = (container) => {
     const input = document.createElement('input');
     input.type = 'checkbox';
 
-    let nameInPath = name.toLowerCase();
-    nameInPath = nameInPath.replaceAll(' ', '-');
-    input.id = nameInPath;
+    let nameInIDFormat = name.toLowerCase();
+    nameInIDFormat = nameInIDFormat.replaceAll(' ', '-');
+    input.id = nameInIDFormat;
 
     const label = document.createElement('label');
     label.textContent = name;

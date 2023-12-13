@@ -292,12 +292,17 @@ html {
 button {
   font-size: 12pt;
   border-radius: 25px;
-  padding: 10px;
+  padding: 0.5em 1em;
   border: none;
   height: 50px;
-  width: 300px;
+  width: fit-content;
   transition: color 0.4s ease-out, background-color 0.4s ease-out,
     transform 0.4s ease-out, box-shadow 0.2s ease-out;
+}
+
+#login-bar button {
+  padding: 10px;
+  width: 300px;
 }
 
 button,
@@ -440,11 +445,14 @@ select {
 
 input.submit,
 button.submit {
-  font-size: 12pt;
   text-transform: uppercase;
   color: white;
   background-color: black;
   border-radius: 5px;
+}
+
+input.submit,
+form button.submit {
   padding: 10px 0;
 }
 
@@ -604,6 +612,7 @@ body#sell h4 {
     font-size: 24pt;
     height: 100px;
     width: 350px;
+    /* width: fit-content; */
   }
 
   #menu {
