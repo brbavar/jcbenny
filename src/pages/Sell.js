@@ -129,6 +129,11 @@ const handleSelection = (e) => {
   else handleOfferToAnyone();
 
   const container = document.querySelector('.container');
+
+  const br = document.createElement('br');
+  const btnBox = container.querySelector('.btn-box');
+  container.insertBefore(br, btnBox);
+
   const sellBtn = container.querySelector('button');
   sellBtn.style.display = 'block';
 };
@@ -157,10 +162,10 @@ const askItemAvailability = () => {
   const btns = container.querySelectorAll('button');
   btns[0].remove();
   btns[1].remove();
-  container.insertBefore(select, breaks[3]);
+  container.insertBefore(select, breaks[2]);
 
   const newBreak = document.createElement('br');
-  container.insertBefore(newBreak, breaks[3]);
+  container.insertBefore(newBreak, breaks[2]);
   for (let i = 0; i < 3; i++) breaks[i].remove();
 };
 
@@ -209,10 +214,8 @@ const Sell = () => {
     <body id='sell'>
       <MenuBar menuRef={menuRef} />
       <Menu ref={menuRef} />
-      {/* <div className='card'> */}
       <div className='container'>
         <h2>What do you have to sell?</h2>
-        <br />
         <input
           id='description-field'
           value={description}
@@ -235,8 +238,6 @@ const Sell = () => {
             }
           }}
         />
-        <br />
-        <br />
         <div className='btn-box'>
           <button
             className='submit'
@@ -261,10 +262,8 @@ const Sell = () => {
             Sell
           </button>
         </div>
-        <br />
         <div style={{ display: 'none' }} className='img-box'></div>
       </div>
-      {/* </div> */}
     </body>
   );
 };

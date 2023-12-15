@@ -566,6 +566,10 @@ body#sell select {
   font-size: 1em;
 }
 
+body#sell .container > * {
+  margin-bottom: 20px;
+}
+
 body#sell .btn-box {
   display: flex;
   flex-direction: column;
