@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useUser } from '../lib/useUser';
 import { nameDups } from '../lib/getNameDups';
+import onSubmitHandler from '../lib/onSubmitHandler';
 
 import MenuBar from '../components/MenuBar';
 import Menu from '../components/Menu';
@@ -91,6 +92,7 @@ const makeNameCheckboxes = (container) => {
   
   let input = document.createElement('input');
   input.type = 'submit';
+  input.addEventListener('click', onSubmitHandler);
 };
 
 const handleOfferToSomeoneSpecial = () => {
