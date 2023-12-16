@@ -92,7 +92,7 @@ const makeNameCheckboxes = (container) => {
   
   let input = document.createElement('input');
   input.type = 'submit';
-  input.onSubmit = (e) =>
+  form.onSubmit = (e) =>
             onsubmitHandler(e, '', 'POST', onfulfilled);
 };
 
