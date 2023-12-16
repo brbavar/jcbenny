@@ -72,7 +72,7 @@ const makeNameCheckboxes = (container) => {
   container.insertBefore(form, breaks[1]);
 
   for (let [name] of nameDups) {
-    const input = document.createElement('input');
+    let input = document.createElement('input');
     input.type = 'checkbox';
 
     let nameInIDFormat = name.toLowerCase();
@@ -89,7 +89,7 @@ const makeNameCheckboxes = (container) => {
     if (nameDups[name] > 1) input.id += ''; // Append to id if there are dups of name
   }
   
-  const input = document.createElement('input');
+  let input = document.createElement('input');
   input.type = 'submit';
 };
 
