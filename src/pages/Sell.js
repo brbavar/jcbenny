@@ -88,6 +88,9 @@ const makeNameCheckboxes = (container) => {
 
     if (nameDups[name] > 1) input.id += ''; // Append to id if there are dups of name
   }
+  
+  const input = document.createElement('input');
+  input.type = 'submit';
 };
 
 const handleOfferToSomeoneSpecial = () => {
