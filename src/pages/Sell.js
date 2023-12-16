@@ -92,7 +92,8 @@ const makeNameCheckboxes = (container) => {
   
   let input = document.createElement('input');
   input.type = 'submit';
-  input.addEventListener('click', onSubmitHandler);
+  input.onSubmit = (e) =>
+            onsubmitHandler(e, '', 'POST', onfulfilled);
 };
 
 const handleOfferToSomeoneSpecial = () => {
