@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useUser } from '../lib/useUser';
 import { nameDups } from '../lib/getNameDups';
-import onSubmitHandler from '../lib/onSubmitHandler';
+import onsubmitHandler from '../lib/onsubmitHandler';
 
 import MenuBar from '../components/MenuBar';
 import Menu from '../components/Menu';
@@ -89,11 +89,16 @@ const makeNameCheckboxes = (container) => {
 
     if (nameDups[name] > 1) input.id += ''; // Append to id if there are dups of name
   }
-  
+
   let input = document.createElement('input');
   input.type = 'submit';
   form.onSubmit = (e) =>
-            onsubmitHandler(e, '', 'POST', onfulfilled);
+    onsubmitHandler(
+      e,
+      '/private/sell-something/save-potential-buyers',
+      'POST',
+      onfulfilled
+    );
 };
 
 const handleOfferToSomeoneSpecial = () => {

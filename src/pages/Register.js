@@ -5,7 +5,7 @@ import { useToken } from '../lib/useToken';
 import EyeIconBox from '../components/EyeIconBox';
 import { eyeOpen, togglePasswordVisibility } from '../lib/password-visibility';
 
-import onsubmitHandler from '../lib/onSubmitHandler';
+import onsubmitHandler from '../lib/onsubmitHandler';
 
 const Register = () => {
   useEffect(() => {
