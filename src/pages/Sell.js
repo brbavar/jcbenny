@@ -93,12 +93,7 @@ const makeNameCheckboxes = (container) => {
   let input = document.createElement('input');
   input.type = 'submit';
   form.onSubmit = (e) =>
-    onsubmitHandler(
-      e,
-      '/private/sell-something/save-potential-buyers',
-      'POST',
-      onfulfilled
-    );
+    onsubmitHandler(e, '/private/sell-something/save-potential-buyers', 'POST');
 };
 
 const handleOfferToSomeoneSpecial = () => {
