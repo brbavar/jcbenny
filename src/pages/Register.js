@@ -59,8 +59,9 @@ const Register = () => {
           }
         >
           <div className='field'>
-            <div>Email</div>
+            <label for='email'>Email</label>
             <input
+              id='email'
               name='Email'
               type='email'
               onChange={(e) => setEmail(e.target.value)}
@@ -68,17 +69,17 @@ const Register = () => {
           </div>
           <div className='name-section'>
             <div className='field'>
-              <div>First name</div>
+              <label>First name</label>
               <input name='First name' type='text' />
             </div>
             <div className='field'>
-              <div>Last name</div>
+              <label>Last name</label>
               <input name='Last name' type='text' />
             </div>
           </div>
           <div className='password-section'>
             <div className='field'>
-              <div>Password</div>
+              <label>Password</label>
               <div className='password-subfield'>
                 <input
                   style={{ width: '100%' }}
@@ -95,12 +96,12 @@ const Register = () => {
               </div>
             </div>
             <div className='field'>
-              <div>Confirm password</div>
+              <label>Confirm password</label>
               <div className='password-subfield'>
                 <input
                   style={{ width: '100%' }}
                   name='Confirm password'
-                  type={passVis}
+                  rdtype={passVis}
                 />
                 <EyeIconBox
                   eyeClickHandler={eyeClickHandler}
