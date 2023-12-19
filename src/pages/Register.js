@@ -69,20 +69,21 @@ const Register = () => {
           </div>
           <div className='name-section'>
             <div className='field'>
-              <label>First name</label>
-              <input name='First name' type='text' />
+              <label for='first-name'>First name</label>
+              <input id='first-name' name='First name' type='text' />
             </div>
             <div className='field'>
-              <label>Last name</label>
-              <input name='Last name' type='text' />
+              <label for='last-name'>Last name</label>
+              <input id='last-name' name='Last name' type='text' />
             </div>
           </div>
           <div className='password-section'>
             <div className='field'>
-              <label>Password</label>
+              <label for='password'>Password</label>
               <div className='password-subfield'>
                 <input
                   style={{ width: '100%' }}
+                  id='password'
                   name='Password'
                   type={passVis}
                   onChange={(e) => setPassword(e.target.value)}
@@ -96,10 +97,11 @@ const Register = () => {
               </div>
             </div>
             <div className='field'>
-              <label>Confirm password</label>
+              <label for='confirm'>Confirm password</label>
               <div className='password-subfield'>
                 <input
                   style={{ width: '100%' }}
+                  id='confirm'
                   name='Confirm password'
                   rdtype={passVis}
                 />
