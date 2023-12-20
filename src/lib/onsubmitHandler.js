@@ -23,6 +23,7 @@ const onsubmitHandler = (
 
   const form = e.target;
   const formData = jsonifyForm(form);
+  for (let [key, val] of userInfo) formData[key] = val;
 
   const req = {
     method: method,
