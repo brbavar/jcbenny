@@ -90,6 +90,8 @@ const makeNameCheckboxes = (container, userInfo) => {
 
   let input = document.createElement('input');
   input.type = 'submit';
+  input.name = 'SUBMIT';
+  input.value = 'SUBMIT';
   form.onSubmit = (e) =>
     onsubmitHandler(
       e,
@@ -99,6 +101,7 @@ const makeNameCheckboxes = (container, userInfo) => {
       () => {},
       userInfo
     );
+  form.appendChild(input);
 };
 
 const handleOfferToSomeoneSpecial = (userInfo) => {
