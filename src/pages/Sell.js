@@ -109,7 +109,7 @@ const handleOfferToSomeoneSpecial = (userInfo) => {
     "Oooo, who's this special someone? Or should I say special someones, plural?";
 
   const imgBox = container.querySelector('.img-box');
-  if (imgBox) {
+  if (imgBox.style.display === 'block') {
     imgBox.style.transform = 'scale(0)';
     imgBox.animate(
       [{ transform: 'scale(1)' }, { transform: 'scale(0)' }],
@@ -117,7 +117,7 @@ const handleOfferToSomeoneSpecial = (userInfo) => {
     );
 
     setTimeout(() => {
-      imgBox.remove();
+      imgBox.style.display = 'none';
 
       makeNameCheckboxes(container, userInfo);
     }, 1500);
