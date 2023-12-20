@@ -137,7 +137,7 @@ const handleOfferToAnyone = () => {
 };
 
 const handleSelection = (e, userInfo) => {
-  const offerToSomeoneSpecial = e.target.children[1];
+  const offerToSomeoneSpecial = e.target.children[2];
 
   if (offerToSomeoneSpecial.selected) handleOfferToSomeoneSpecial(userInfo);
   else handleOfferToAnyone();
