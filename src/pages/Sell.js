@@ -92,15 +92,15 @@ const makeNameCheckboxes = (container, userInfo) => {
   input.type = 'submit';
   input.name = 'SUBMIT';
   input.value = 'SUBMIT';
-  form.onSubmit = (e) =>
+  form.onSubmit = (e) => {
+    console.log('onsubmit event triggered');
     onsubmitHandler(
       e,
+      userInfo,
       '/private/sell-something/save-potential-buyers',
-      'POST',
-      () => {},
-      () => {},
-      userInfo
+      'POST'
     );
+  };
   form.appendChild(input);
 };
 

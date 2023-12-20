@@ -13,11 +13,11 @@ const jsonifyForm = (form) => {
 
 const onsubmitHandler = (
   e,
+  userInfo,
   path,
   method,
   onfulfilled,
-  onrejected,
-  userInfo
+  onrejected
 ) => {
   e.preventDefault();
 

@@ -55,7 +55,7 @@ const Register = () => {
         <h3>Create an account</h3>
         <form
           onSubmit={(e) =>
-            onsubmitHandler(e, '/register/', 'POST', onfulfilled)
+            onsubmitHandler(e, null, '/register/', 'POST', onfulfilled)
           }
         >
           <div className='field'>
