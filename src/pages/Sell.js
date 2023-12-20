@@ -158,10 +158,14 @@ const askItemAvailability = (userInfo) => {
   const options = [
     document.createElement('option'),
     document.createElement('option'),
+    document.createElement('option'),
   ];
-  options[0].textContent = 'Anyone willing to buy it';
+  options[0].textContent = '';
   options[0].selected = true;
-  options[1].textContent = 'Someone special';
+  options[0].disabled = true;
+  // options[0].value = true;
+  options[1].textContent = 'Anyone willing to buy it';
+  options[2].textContent = 'Someone special';
   options.forEach((option) => select.appendChild(option));
   select.onchange = (e) => handleSelection(e, userInfo);
 
