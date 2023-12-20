@@ -89,14 +89,19 @@ const Login = () => {
           }
         >
           <div className='field'>
-            <div>Email</div>
-            <input type='email' onChange={(e) => setEmail(e.target.value)} />
+            <label for='email'>Email</label>
+            <input
+              id='email'
+              type='email'
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className='field'>
-            <div>Password</div>
+            <label for='password'>Password</label>
             <div className='password-subfield'>
               <input
                 style={{ width: '100%' }}
+                id='password'
                 type={passVis}
                 onChange={(e) => setPassword(e.target.value)}
               />

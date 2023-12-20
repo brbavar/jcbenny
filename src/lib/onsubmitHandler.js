@@ -1,10 +1,8 @@
 const jsonifyForm = (form) => {
-  const formKeyNodes = form.querySelectorAll(
-    '.field > :nth-child(1):not(.submit)'
-  );
-  const formValNodes = form.querySelectorAll(
-    '.field > :nth-child(2):not(.password-subfield), .password-subfield > :nth-child(1)'
-  );
+  const formKeyNodes = form.getElementsByTagName('label');
+  const formValNodes = [];
+  for (let keyNode of formKeyNodes)
+    formValNodes.push(form.querySelector(`#${keyNode.htmlFor}`));
 
   const jsonifiedForm = {};
   for (var i = 0; i < formKeyNodes.length; i++)
@@ -13,7 +11,14 @@ const jsonifyForm = (form) => {
   return jsonifiedForm;
 };
 
-const onsubmitHandler = (e, path, method, onfulfilled, onrejected) => {
+const onsubmitHandler = (
+  e,
+  path,
+  method,
+  onfulfilled,
+  onrejected,
+  userInfo
+) => {
   e.preventDefault();
 
   const form = e.target;

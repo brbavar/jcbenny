@@ -34,14 +34,12 @@ const onfulfilled = async (res) => {
 
   const h2 = container.querySelector('h2');
   if (h2) {
-    h2.remove();
-
-    const breaks = container.querySelectorAll('br');
-
     const h4 = document.createElement('h4');
     h4.textContent =
       'Does this resemble the item you had in mind? If not, that may work to your advantage, actually. You want to sell this thing, not accurately represent it to shoppers. But if, for any reason, you want to change the picture, feel free to send another text prompt. Even the one you sent previously will generate a new image if resent.';
-    container.insertBefore(h4, breaks[0]);
+
+    container.insertBefore(h4, h2);
+    h2.remove();
 
     sendPromptBtn.textContent = 'Try again';
     saleBtn.style.display = 'block';
@@ -66,11 +64,11 @@ const sendOpenAIPrompt = (e, description, email) => {
     .catch((error) => console.log(error));
 };
 
-const makeNameCheckboxes = (container) => {
-  const breaks = container.querySelectorAll('br');
+const makeNameCheckboxes = (container, userInfo) => {
   const form = document.createElement('form');
   form.classList.add('checkboxes');
-  container.insertBefore(form, breaks[1]);
+  const btnBox = container.querySelector('.btn-box');
+  container.insertBefore(form, btnBox);
 
   for (let [name] of nameDups) {
     let input = document.createElement('input');
@@ -93,10 +91,17 @@ const makeNameCheckboxes = (container) => {
   let input = document.createElement('input');
   input.type = 'submit';
   form.onSubmit = (e) =>
-    onsubmitHandler(e, '/private/sell-something/save-potential-buyers', 'POST');
+    onsubmitHandler(
+      e,
+      '/private/sell-something/save-potential-buyers',
+      'POST',
+      () => {},
+      () => {},
+      userInfo
+    );
 };
 
-const handleOfferToSomeoneSpecial = () => {
+const handleOfferToSomeoneSpecial = (userInfo) => {
   const container = document.querySelector('.container');
 
   const h4 = container.querySelector('h4');
@@ -114,9 +119,9 @@ const handleOfferToSomeoneSpecial = () => {
     setTimeout(() => {
       imgBox.remove();
 
-      makeNameCheckboxes(container);
+      makeNameCheckboxes(container, userInfo);
     }, 1500);
-  } else makeNameCheckboxes(container);
+  } else makeNameCheckboxes(container, userInfo);
 };
 
 const handleOfferToAnyone = () => {
@@ -128,23 +133,19 @@ const handleOfferToAnyone = () => {
     "Haven't met that special someone yet, eh? Whatever, let's see who'll buy this thing.";
 };
 
-const handleSelection = (e) => {
+const handleSelection = (e, userInfo) => {
   const offerToSomeoneSpecial = e.target.children[1];
 
-  if (offerToSomeoneSpecial.selected) handleOfferToSomeoneSpecial();
+  if (offerToSomeoneSpecial.selected) handleOfferToSomeoneSpecial(userInfo);
   else handleOfferToAnyone();
 
   const container = document.querySelector('.container');
-
-  const br = document.createElement('br');
-  const btnBox = container.querySelector('.btn-box');
-  container.insertBefore(br, btnBox);
 
   const sellBtn = container.querySelector('button');
   sellBtn.style.display = 'block';
 };
 
-const askItemAvailability = () => {
+const askItemAvailability = (userInfo) => {
   const container = document.querySelector('.container');
 
   const h4 = container.querySelector('h4');
@@ -159,20 +160,17 @@ const askItemAvailability = () => {
   options[0].selected = true;
   options[1].textContent = 'Someone special';
   options.forEach((option) => select.appendChild(option));
-  select.onchange = (e) => handleSelection(e);
+  select.onchange = (e) => handleSelection(e, userInfo);
 
   const descriptionField = document.getElementById('description-field');
   descriptionField.remove();
 
-  const breaks = document.querySelectorAll('br');
   const btns = container.querySelectorAll('button');
   btns[0].remove();
   btns[1].remove();
-  container.insertBefore(select, breaks[2]);
 
-  const newBreak = document.createElement('br');
-  container.insertBefore(newBreak, breaks[2]);
-  for (let i = 0; i < 3; i++) breaks[i].remove();
+  const btnBox = container.querySelector('.btn-box');
+  container.insertBefore(select, btnBox);
 };
 
 const putItemUpForSale = (e, description, potentialBuyers, email) => {
@@ -254,7 +252,7 @@ const Sell = () => {
           <button
             style={{ display: 'none' }}
             className='submit'
-            onClick={askItemAvailability}
+            onClick={(e) => askItemAvailability({ Email: Email })}
           >
             Stick with this
           </button>
