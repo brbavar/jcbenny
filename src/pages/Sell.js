@@ -85,7 +85,7 @@ const makeNameCheckboxes = (container, userInfo) => {
     const newBreak = document.createElement('br');
     [newBreak, input, label].forEach((node) => form.appendChild(node));
 
-    if (nameDups[name] > 1) input.id += ''; // Append to id if there are dups of name
+    if (nameDups[name] > 1) input.id += ''; // TODO: Append to id if there are dups of name
   }
 
   let input = document.createElement('input');
@@ -93,7 +93,7 @@ const makeNameCheckboxes = (container, userInfo) => {
   input.name = 'SUBMIT';
   input.value = 'SUBMIT';
   form.onSubmit = (e) => {
-    console.log('onsubmit event triggered');
+    alert('onsubmit event triggered');
     onsubmitHandler(
       e,
       userInfo,
