@@ -64,7 +64,7 @@ const sendOpenAIPrompt = (e, description, email) => {
     .catch((error) => console.log(error));
 };
 
-const makeNameCheckboxes = (container, userInfo) => {
+const makeNameCheckboxes = (container, userInfo, itemDescription) => {
   const form = document.createElement('form');
   form.classList.add('checkboxes');
   const btnBox = container.querySelector('.btn-box');
@@ -82,30 +82,52 @@ const makeNameCheckboxes = (container, userInfo) => {
     label.textContent = name;
     label.htmlFor = input.id;
 
-    const newBreak = document.createElement('br');
-    [newBreak, input, label].forEach((node) => form.appendChild(node));
+    let newBreak = document.createElement('br');
+    [input, label, newBreak].forEach((node) => form.appendChild(node));
 
     if (nameDups[name] > 1) input.id += ''; // TODO: Append to id if there are dups of name
   }
 
+  let newBreak = document.createElement('br');
+  form.appendChild(newBreak);
+
   let input = document.createElement('input');
   input.type = 'submit';
-  input.name = 'SUBMIT';
-  input.value = 'SUBMIT';
-  form.onSubmit = (e) => {
-    alert('onsubmit event triggered');
-    onsubmitHandler(
-      e,
-      userInfo,
-      '/private/sell-something/save-potential-buyers',
-      'POST'
-    );
+  input.name = 'SELL';
+  input.value = 'SELL';
+  input.classList.add('submit');
+  form.onsubmit = (e) => {
+    const formData = onsubmitHandler(e, userInfo);
+    console.log(`formData = ${JSON.stringify(formData)}`);
+
+    let potentialBuyers = [];
+    // if (
+    //   formData[Symbol.iterator] &&
+    //   typeof formData[Symbol.iterator] === 'function'
+    // )
+    //   for (let [name, checked] of formData)
+    //     if (checked) potentialBuyers.push(name);
+
+    for (let key of Object.keys(formData))
+      if (formData[key]) potentialBuyers.push(key);
+
+    const itemInfo = {
+      Description: itemDescription,
+      PotentialBuyers: potentialBuyers,
+    };
+
+    console.log(`itemInfo = ${JSON.stringify(itemInfo)}`);
+
+    putItemUpForSale(e, itemInfo, userInfo.Email);
   };
   form.appendChild(input);
 };
 
-const handleOfferToSomeoneSpecial = (userInfo) => {
+const handleOfferToSomeoneSpecial = (userInfo, itemDescription) => {
   const container = document.querySelector('.container');
+
+  const sellBtn = container.querySelector('button');
+  if (sellBtn.style.display === 'block') sellBtn.style.display = 'none';
 
   const h4 = container.querySelector('h4');
   h4.textContent =
@@ -122,9 +144,9 @@ const handleOfferToSomeoneSpecial = (userInfo) => {
     setTimeout(() => {
       imgBox.style.display = 'none';
 
-      makeNameCheckboxes(container, userInfo);
+      makeNameCheckboxes(container, userInfo, itemDescription);
     }, 1500);
-  } else makeNameCheckboxes(container, userInfo);
+  } else makeNameCheckboxes(container, userInfo, itemDescription);
 };
 
 const handleOfferToAnyone = () => {
@@ -134,13 +156,6 @@ const handleOfferToAnyone = () => {
   const h4 = document.querySelector('h4');
   h4.textContent =
     "Haven't met that special someone yet, eh? Whatever, let's see who'll buy this thing.";
-};
-
-const handleSelection = (e, userInfo) => {
-  const offerToSomeoneSpecial = e.target.children[2];
-
-  if (offerToSomeoneSpecial.selected) handleOfferToSomeoneSpecial(userInfo);
-  else handleOfferToAnyone();
 
   const container = document.querySelector('.container');
 
@@ -148,7 +163,15 @@ const handleSelection = (e, userInfo) => {
   sellBtn.style.display = 'block';
 };
 
-const askItemAvailability = (userInfo) => {
+const handleSelection = (e, userInfo, itemDescription) => {
+  const offerToSomeoneSpecial = e.target.children[2];
+
+  if (offerToSomeoneSpecial.selected)
+    handleOfferToSomeoneSpecial(userInfo, itemDescription);
+  else handleOfferToAnyone();
+};
+
+const askItemAvailability = (userInfo, itemDescription) => {
   const container = document.querySelector('.container');
 
   const h4 = container.querySelector('h4');
@@ -167,7 +190,7 @@ const askItemAvailability = (userInfo) => {
   options[1].textContent = 'Anyone willing to buy it';
   options[2].textContent = 'Someone special';
   options.forEach((option) => select.appendChild(option));
-  select.onchange = (e) => handleSelection(e, userInfo);
+  select.onchange = (e) => handleSelection(e, userInfo, itemDescription);
 
   const descriptionField = document.getElementById('description-field');
   descriptionField.remove();
@@ -180,21 +203,19 @@ const askItemAvailability = (userInfo) => {
   container.insertBefore(select, btnBox);
 };
 
-const putItemUpForSale = (e, description, potentialBuyers, email) => {
+const putItemUpForSale = (e, itemInfo, email) => {
   const img = document.querySelector('#sell .img-box > img');
+  itemInfo.ImgURL = img.src;
+
   fetch(
-    'https://weak-puce-toad-garb.cyclic.app/private/sell-something/save-pic',
+    'https://weak-puce-toad-garb.cyclic.app/private/sell-something/save-item-info',
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        List: {
-          Description: description,
-          PotentialBuyers: potentialBuyers,
-          ImgURL: img.src,
-        },
+        Merch: itemInfo,
         Email: email,
       }),
     }
@@ -259,7 +280,7 @@ const Sell = () => {
           <button
             style={{ display: 'none' }}
             className='submit'
-            onClick={(e) => askItemAvailability({ Email: Email })}
+            onClick={(e) => askItemAvailability({ Email: Email }, description)}
           >
             Stick with this
           </button>

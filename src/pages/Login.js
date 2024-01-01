@@ -85,7 +85,7 @@ const Login = () => {
         <h3>Sign in</h3>
         <form
           onSubmit={(e) =>
-            onsubmitHandler(e, null, '/', 'GET', onfulfilled, onrejected)
+            onsubmitHandler(e, null, 'GET', '/', onfulfilled, onrejected)
           }
         >
           <div className='field'>

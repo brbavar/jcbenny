@@ -6,7 +6,11 @@ const jsonifyForm = (form) => {
 
   const jsonifiedForm = {};
   for (var i = 0; i < formKeyNodes.length; i++)
-    jsonifiedForm[formKeyNodes[i].textContent] = formValNodes[i].value;
+    jsonifiedForm[formKeyNodes[i].textContent] = form.classList.contains(
+      'checkboxes'
+    )
+      ? formValNodes[i].checked
+      : formValNodes[i].value;
 
   return jsonifiedForm;
 };
@@ -14,8 +18,8 @@ const jsonifyForm = (form) => {
 const onsubmitHandler = (
   e,
   userInfo,
+  method = '',
   path,
-  method,
   onfulfilled,
   onrejected
 ) => {
@@ -23,27 +27,36 @@ const onsubmitHandler = (
 
   const form = e.target;
   const formData = jsonifyForm(form);
-  if (userInfo) for (let [key, val] of userInfo) formData[key] = val;
+  if (
+    userInfo &&
+    userInfo[Symbol.iterator] &&
+    typeof userInfo[Symbol.iterator] === 'function'
+  )
+    for (let [key, val] of userInfo) formData[key] = val;
 
-  const req = {
-    method: method,
-  };
+  if (method) {
+    const req = {
+      method: method,
+    };
 
-  if (method === 'POST') {
-    req.headers = { 'Content-Type': 'application/json' };
-    req.body = JSON.stringify(formData);
+    if (method === 'POST') {
+      req.headers = { 'Content-Type': 'application/json' };
+      req.body = JSON.stringify(formData);
+    }
+
+    fetch(
+      `https://weak-puce-toad-garb.cyclic.app${path}${
+        method === 'GET'
+          ? `emails/${formData.Email}/passwords/${formData.Password}`
+          : ''
+      }`,
+      req
+    )
+      .then(onfulfilled, onrejected)
+      .catch((error) => console.log(error));
   }
 
-  fetch(
-    `https://weak-puce-toad-garb.cyclic.app${path}${
-      method === 'GET'
-        ? `emails/${formData.Email}/passwords/${formData.Password}`
-        : ''
-    }`,
-    req
-  )
-    .then(onfulfilled, onrejected)
-    .catch((error) => console.log(error));
+  return formData;
 };
 
 export default onsubmitHandler;

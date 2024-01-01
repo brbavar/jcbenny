@@ -17,7 +17,7 @@ input {
 }
 
 .container {
-  margin-left: 3em;
+  margin: 0 3em;
 }
 
 /* HOMEPAGE STYLES BELOW */
@@ -288,15 +288,19 @@ html {
   align-items: center;
 }
 
-button {
+button,
+body#sell input.submit {
   font-size: 12pt;
-  border-radius: 25px;
   padding: 0.5em 1em;
   border: none;
   height: 50px;
   width: fit-content;
   transition: color 0.4s ease-out, background-color 0.4s ease-out,
     transform 0.4s ease-out, box-shadow 0.2s ease-out;
+}
+
+button {
+  border-radius: 25px;
 }
 
 #login-bar button {
@@ -308,13 +312,6 @@ button,
 input.submit {
   font-family: Poppins;
   font-weight: 600;
-}
-
-button:hover {
-  color: white;
-  background-color: black;
-  transform: translate(0, -4px);
-  box-shadow: 0px 10px 20px rgb(54, 52, 52);
 }
 
 #login-bar > a {
@@ -547,7 +544,7 @@ body#sell {
   max-height: 100vh;
 }
 
-body#sell input {
+body#sell input:not(.submit) {
   /* all: unset; */
   color: rgba(235, 235, 179, 0.3);
   padding-left: 0.2em;
@@ -560,9 +557,13 @@ body#sell select {
 body#sell input,
 body#sell select {
   border: 2px solid rgba(4, 4, 94, 0.3);
-  background-color: rgba(2, 2, 84, 0.5);
   height: 40px;
   font-size: 1em;
+}
+
+body#sell input:not(.submit),
+body#sell select {
+  background-color: rgba(2, 2, 84, 0.5);
 }
 
 body#sell .container > * {
@@ -634,6 +635,15 @@ body#sell h4 {
     height: 50px;
     width: 175px;
     transform: translateX(-35px);
+  }
+}
+
+@media (pointer: fine) {
+  button:hover {
+    color: white;
+    background-color: black;
+    transform: translate(0, -4px);
+    box-shadow: 0px 10px 20px rgb(54, 52, 52);
   }
 }
 
