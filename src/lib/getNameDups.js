@@ -1,7 +1,9 @@
-import scanDatabase from './scanDatabase';
+import { scanDatabase } from './scanDatabase';
 
 const namesOfUsers = scanDatabase('/names-of-users');
 const nameDups = new Map();
+
+// alert(namesOfUsers);
 
 for (let name of namesOfUsers) {
   const fullName = `${name['First name']} ${name['Last name']}`;
