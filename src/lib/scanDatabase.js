@@ -1,10 +1,12 @@
 import axios from 'axios';
 
-export const scanDatabase = (scanEndpoint) => {
-  axios.get(`https://weak-puce-toad-garb.cyclic.app${scanEndpoint}`).then(
-    (res) => {
-      if (res.data.Count) return res.data.Items;
-    },
-    (error) => console.log(error)
-  );
+export const scanDatabase = async (scanEndpoint) => {
+  try {
+    const res = await axios.get(
+      `https://weak-puce-toad-garb.cyclic.app${scanEndpoint}`
+    );
+    if (res.data.Count) return res.data.Items;
+  } catch (error) {
+    console.log(error);
+  }
 };
