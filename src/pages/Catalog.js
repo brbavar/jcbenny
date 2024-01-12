@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { scanDatabase } from '../lib/scanDatabase';
 
 import MenuBar from '../components/MenuBar.js';
 import Menu from '../components/Menu.js';
