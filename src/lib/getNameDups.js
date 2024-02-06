@@ -7,12 +7,13 @@ scanDatabase('/names-of-users', {
     expressionAttributeNames: { '#FN': 'First name', '#LN': 'Last name' },
   },
 }).then((namesOfUsers) => {
-  for (let name of namesOfUsers) {
-    const fullName = `${name['First name']} ${name['Last name']}`;
-    if (nameDups.has(fullName))
-      nameDups.set(fullName, nameDups.get(fullName) + 1);
-    else nameDups.set(fullName, 1);
-  }
+  if (namesOfUsers)
+    for (let name of namesOfUsers) {
+      const fullName = `${name['First name']} ${name['Last name']}`;
+      if (nameDups.has(fullName))
+        nameDups.set(fullName, nameDups.get(fullName) + 1);
+      else nameDups.set(fullName, 1);
+    }
 });
 
 export { nameDups };
