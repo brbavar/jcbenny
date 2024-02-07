@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { srcs } from '../lib/getSrcs';
+import { scanDatabase } from '../lib/scanDatabase';
 
 import MenuBar from '../components/MenuBar.js';
 import Menu from '../components/Menu.js';
@@ -16,11 +16,27 @@ const Catalog = () => {
 
   const items = [];
 
-  // const srcs = [null]; // Replace null with imported AI-generated image
+  const srcs = [];
+
+  scanDatabase('/merch', {
+    params: {
+      expressionAttributeNames: { '#M': 'Merch' },
+    },
+  }).then((allMerch) => {
+    if (allMerch) {
+      for (let subset of allMerch) {
+        for (let item of subset.Merch) {
+          // console.log(JSON.stringify(item));
+          console.log(item[2]);
+          srcs.push(item[2]);
+        }
+      }
+    }
+  });
+
   const prices = [0]; // Replace 0 with price of item represented by aforementioned image
 
   for (let i = 0; i < srcs.length; i++) {
-    // srcs.push(null);
     prices.push(0);
     items.push(<Item src={srcs[i]} price={prices[i]} />);
   }
