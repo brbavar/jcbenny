@@ -205,7 +205,7 @@ const askItemAvailability = (userInfo, itemDescription) => {
 
 const putItemUpForSale = (e, itemInfo, email) => {
   const img = document.querySelector('#sell .img-box > img');
-  itemInfo.ImgURL = img.src;
+  // itemInfo.ImgURL = img.src;
 
   fetch(
     'https://weak-puce-toad-garb.cyclic.app/private/sell-something/save-item-info',
@@ -215,7 +215,7 @@ const putItemUpForSale = (e, itemInfo, email) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        Merch: itemInfo,
+        Merch: { DynamoData: itemInfo, S3Data: { ImgURL: img.src } },
         Email: email,
       }),
     }
