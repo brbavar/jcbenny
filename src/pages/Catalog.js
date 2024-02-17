@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { scanDatabase } from '../lib/scanDatabase';
+import { getS3Obj } from '../lib/getS3Obj';
 
 import MenuBar from '../components/MenuBar.js';
 import Menu from '../components/Menu.js';
@@ -33,6 +34,8 @@ const Catalog = () => {
       }
     }
   });
+
+  for (let src of srcs) getS3Obj(`/merch-imgs/${src}`);
 
   const prices = [0]; // Replace 0 with price of item represented by aforementioned image
 
