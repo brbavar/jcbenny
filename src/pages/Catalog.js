@@ -26,34 +26,34 @@ const Catalog = () => {
   }).then((allMerch) => {
     if (allMerch) {
       for (let subset of allMerch) {
-        for (let item of subset.Merch) {
+        for (let item of subset.Merch.DynamoData) {
           // console.log(JSON.stringify(item));
           console.log(item[2]);
           srcs.push(item[2]);
         }
       }
     }
+
+    for (let src of srcs) getS3Obj(`/merch-imgs/${src}`);
+
+    const prices = [0]; // Replace 0 with price of item represented by aforementioned image
+
+    for (let i = 0; i < srcs.length; i++) {
+      prices.push(0);
+      items.push(<Item src={srcs[i]} price={prices[i]} />);
+    }
+
+    // for (let i = 0; i < 10; i++)
+    //   items.push(<Item src={srcs[i]} price={prices[i]} />);
+
+    return (
+      <body id='items'>
+        <MenuBar menuRef={menuRef} />
+        <Menu ref={menuRef} />
+        <div className='item-grid'>{items}</div>
+      </body>
+    );
   });
-
-  for (let src of srcs) getS3Obj(`/merch-imgs/${src}`);
-
-  const prices = [0]; // Replace 0 with price of item represented by aforementioned image
-
-  for (let i = 0; i < srcs.length; i++) {
-    prices.push(0);
-    items.push(<Item src={srcs[i]} price={prices[i]} />);
-  }
-
-  // for (let i = 0; i < 10; i++)
-  //   items.push(<Item src={srcs[i]} price={prices[i]} />);
-
-  return (
-    <body id='items'>
-      <MenuBar menuRef={menuRef} />
-      <Menu ref={menuRef} />
-      <div className='item-grid'>{items}</div>
-    </body>
-  );
 };
 
 export default Catalog;
