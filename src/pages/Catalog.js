@@ -19,11 +19,7 @@ const Catalog = () => {
 
   const srcs = [];
 
-  scanDatabase('/merch', {
-    params: {
-      expressionAttributeNames: { '#M': 'Merch' },
-    },
-  }).then((allMerch) => {
+  scanDatabase(`/merch`).then((allMerch) => {
     if (allMerch) {
       for (let subset of allMerch) {
         for (let item of subset.Merch.DynamoData) {

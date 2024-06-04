@@ -47,19 +47,16 @@ const onfulfilled = async (res) => {
 };
 
 const sendOpenAIPrompt = (e, description, email) => {
-  fetch(
-    'https://weak-puce-toad-garb.cyclic.app/private/sell-something/make-pic',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        List: { Description: description },
-        Email: email,
-      }),
-    }
-  )
+  fetch('https://jcbenny-api.fly.dev/private/sell-something/make-pic', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      List: { Description: description },
+      Email: email,
+    }),
+  })
     .then((res) => onfulfilled(res))
     .catch((error) => console.log(error));
 };
@@ -207,19 +204,16 @@ const putItemUpForSale = (e, itemInfo, email) => {
   const img = document.querySelector('#sell .img-box > img');
   // itemInfo.ImgURL = img.src;
 
-  fetch(
-    'https://weak-puce-toad-garb.cyclic.app/private/sell-something/save-item-info',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        Merch: { DynamoData: itemInfo, S3Data: { ImgURL: img.src } },
-        Email: email,
-      }),
-    }
-  )
+  fetch('https://jcbenny-api.fly.dev/private/sell-something/save-item-info', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      Merch: { DynamoData: itemInfo, S3Data: { ImgURL: img.src } },
+      Email: email,
+    }),
+  })
     .then((res) => {
       res.text().then((text) => {
         console.log(text);

@@ -45,7 +45,7 @@ const onsubmitHandler = (
     }
 
     fetch(
-      `https://weak-puce-toad-garb.cyclic.app${path}${
+      `https://jcbenny-api.fly.dev${path}${
         method === 'GET'
           ? `emails/${formData.Email}/passwords/${formData.Password}`
           : ''

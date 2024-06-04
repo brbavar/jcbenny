@@ -2,11 +2,7 @@ import { scanDatabase } from './scanDatabase';
 
 const nameDups = new Map();
 
-scanDatabase('/names-of-users', {
-  params: {
-    expressionAttributeNames: { '#FN': 'First name', '#LN': 'Last name' },
-  },
-}).then((namesOfUsers) => {
+scanDatabase(`/names-of-users`).then((namesOfUsers) => {
   if (namesOfUsers)
     for (let name of namesOfUsers) {
       const fullName = `${name['First name']} ${name['Last name']}`;
